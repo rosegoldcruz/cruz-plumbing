@@ -30,9 +30,10 @@ export default function Navigation() {
         transition={{ duration: 0.6, ease: "easeOut" }}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           scrolled
-            ? "bg-brand-navy/95 backdrop-blur-md border-b border-white/10 shadow-2xl"
+            ? "border-b shadow-[0_1px_0_rgba(59,130,246,0.12)]"
             : "bg-transparent"
         }`}
+        style={scrolled ? { background: "rgba(8,14,26,0.96)", backdropFilter: "blur(12px)" } : {}}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16 md:h-20">
@@ -74,9 +75,10 @@ export default function Navigation() {
             <div className="hidden md:flex items-center gap-3">
               <a
                 href="tel:6235513781"
-                className="flex items-center gap-2 bg-brand-blue hover:bg-brand-blue-light text-white font-semibold px-5 py-2.5 rounded-full transition-all duration-200 text-sm hero-pulse"
+                className="hero-pulse flex items-center gap-2 text-white font-bold px-5 py-2.5 text-sm transition-all duration-150 hover:opacity-90"
+                style={{ background: "#E8960A", borderRadius: "5px", color: "#080E1A" }}
               >
-                <Phone className="w-4 h-4" />
+                <Phone className="w-3.5 h-3.5" />
                 (623) 551-3781
               </a>
             </div>
@@ -116,10 +118,11 @@ export default function Navigation() {
               ))}
               <a
                 href="tel:6235513781"
-                className="flex items-center justify-center gap-2 bg-brand-blue text-white font-bold px-6 py-4 rounded-xl text-lg mt-2"
+                className="flex items-center justify-center gap-2 text-white font-bold px-6 py-4 text-lg mt-2"
+                style={{ background: "#E8960A", borderRadius: "5px", color: "#080E1A" }}
               >
                 <Phone className="w-5 h-5" />
-                Call Now – (623) 551-3781
+                Call Now — (623) 551-3781
               </a>
             </div>
           </motion.div>

@@ -83,7 +83,8 @@ export default function QuoteForm() {
             </p>
             <a
               href="tel:6235513781"
-              className="mt-2 flex items-center gap-2 bg-brand-blue text-white font-bold px-6 py-3 rounded-xl"
+              className="mt-2 flex items-center gap-2 font-bold px-6 py-3"
+              style={{ background: "#E8960A", color: "#080E1A", borderRadius: "5px" }}
             >
               <Phone className="w-4 h-4" />
               (623) 551-3781
@@ -166,7 +167,8 @@ export default function QuoteForm() {
               disabled={formState === "submitting"}
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-              className="w-full flex items-center justify-center gap-2 bg-brand-blue hover:bg-brand-blue-light disabled:opacity-70 text-white font-bold py-4 rounded-xl text-base transition-all duration-200 mt-1"
+              className="w-full flex items-center justify-center gap-2 disabled:opacity-60 font-bold py-4 text-base transition-all duration-150 mt-1"
+              style={{ background: "#E8960A", color: "#080E1A", borderRadius: "5px" }}
             >
               {formState === "submitting" ? (
                 <>

@@ -1,104 +1,163 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Heart, MapPin, Users, Shield } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 
 export default function AboutFamily() {
   return (
-    <section id="about" className="relative py-24 lg:py-32 bg-brand-navy-light overflow-hidden">
-      {/* Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-brand-navy-light to-brand-navy" />
-      <div className="absolute right-0 top-0 w-[500px] h-[500px] bg-brand-blue/5 rounded-full blur-3xl" />
+    <section
+      id="about"
+      className="relative py-24 lg:py-36 overflow-hidden"
+      style={{ background: "linear-gradient(170deg, #0C1626 0%, #080E1A 100%)" }}
+    >
+      {/* Directional light — comes from right */}
+      <div className="absolute top-0 right-0 w-[600px] h-[600px] pointer-events-none"
+        style={{ background: "radial-gradient(ellipse at 100% 0%, rgba(30,64,175,0.06) 0%, transparent 65%)" }} />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
 
-          {/* LEFT: Images collage */}
+        {/* ── EDITORIAL HEADER — broken from center ── */}
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-end mb-14 lg:mb-20">
           <motion.div
-            initial={{ opacity: 0, x: -40 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="relative"
+            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
           >
-            <div className="grid grid-cols-2 gap-4">
-              <div className="flex flex-col gap-4">
-                <div className="relative aspect-square rounded-2xl overflow-hidden border border-white/10">
-                  <Image src="/cruz.png" alt="Cruz Plumbing team" fill className="object-cover" />
-                </div>
-                <div className="relative aspect-video rounded-2xl overflow-hidden border border-white/10">
-                  <Image src="/housecalls.png" alt="On a house call" fill className="object-cover" />
-                </div>
-              </div>
-              <div className="flex flex-col gap-4 mt-8">
-                <div className="relative aspect-video rounded-2xl overflow-hidden border border-white/10">
-                  <Image src="/apprentice.png" alt="Teaching the next generation" fill className="object-cover" />
-                </div>
-                <div className="relative aspect-square rounded-2xl overflow-hidden border border-white/10">
-                  <Image src="/summer.png" alt="Cruz family" fill className="object-cover" />
-                </div>
-              </div>
+            <div className="flex items-center gap-3 mb-5">
+              <div className="h-px w-6 bg-brand-accent-hot" />
+              <span className="authority-badge text-brand-accent-hot">Who We Are</span>
             </div>
-
-            {/* Floating tag */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.5, type: "spring", stiffness: 200 }}
-              className="absolute -bottom-4 left-1/2 -translate-x-1/2 bg-brand-navy border border-brand-blue/30 rounded-2xl px-5 py-3 flex items-center gap-3 shadow-2xl whitespace-nowrap"
+            <h2
+              className="font-display font-bold text-white"
+              style={{ fontSize: "clamp(2.2rem, 4.5vw, 3.6rem)", lineHeight: 1.04, letterSpacing: "-0.02em" }}
             >
-              <Heart className="w-5 h-5 text-rose-400 fill-rose-400" />
-              <span className="text-white font-semibold text-sm">Real Family. Real Community.</span>
-            </motion.div>
+              Not a Call Center.
+              <br />
+              <span style={{ color: "#93C5FD" }}>Real Plumbers.</span>
+            </h2>
           </motion.div>
 
-          {/* RIGHT: Copy */}
           <motion.div
-            initial={{ opacity: 0, x: 40 }}
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+            className="lg:pb-2"
+          >
+            <p className="text-slate-300 text-lg leading-relaxed">
+              Cruz Plumbing is a family business. When you call us, you&apos;re talking to the same people who show up, do the work, and care whether it holds.
+            </p>
+            <p className="text-slate-500 text-base leading-relaxed mt-4">
+              We&apos;re not a franchise. We don&apos;t dispatch strangers. We&apos;re rooted in the West Valley and we treat every home like it&apos;s our own — because our neighbors live in these homes.
+            </p>
+          </motion.div>
+        </div>
+
+        {/* ── ASYMMETRIC IMAGE GRID + EDITORIAL COPY ── */}
+        <div className="grid lg:grid-cols-[1.15fr_1fr] gap-8 lg:gap-12 items-start">
+
+          {/* LEFT: Staggered image collage — intentionally asymmetric */}
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.1 }}
-            className="flex flex-col gap-6 pt-8 lg:pt-0"
+            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            className="relative"
           >
-            <div className="inline-flex items-center gap-2 bg-rose-500/10 border border-rose-500/20 rounded-full px-4 py-2 w-fit">
-              <Heart className="w-4 h-4 text-rose-400" />
-              <span className="text-rose-400 text-sm font-semibold tracking-widest uppercase">About Us</span>
+            {/* Main image — large, slightly cropped */}
+            <div className="relative overflow-hidden" style={{ borderRadius: "4px", border: "1px solid rgba(59,130,246,0.1)" }}>
+              <Image
+                src="/main.png"
+                alt="Cruz Plumbing — family team"
+                width={680}
+                height={440}
+                className="w-full object-cover object-center"
+              />
+              <div className="absolute inset-0 pointer-events-none"
+                style={{ background: "linear-gradient(160deg, transparent 55%, rgba(8,14,26,0.6) 100%)" }} />
             </div>
 
-            <h2 className="font-display font-bold text-4xl sm:text-5xl text-white leading-tight">
-              We&apos;re Not a Call Center.
-              <span className="block gradient-text">We&apos;re Your Neighbors.</span>
-            </h2>
-
-            <p className="text-slate-300 text-lg leading-relaxed">
-              Cruz Plumbing is a family business built on doing right by the people we serve. When your home has a problem, you don&apos;t want a stranger — you want someone who shows up calm, explains what&apos;s wrong without the runaround, and fixes it like it&apos;s their own house.
-            </p>
-
-            <p className="text-slate-400 text-base leading-relaxed">
-              That&apos;s who we are. We&apos;re rooted in the West Valley, we&apos;ve served hundreds of local families, and we treat every job the same — with respect, honesty, and craftsmanship that lasts.
-            </p>
-
-            {/* Values */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-2">
-              {[
-                { icon: Users, label: "Family Team", desc: "We work together. You feel it." },
-                { icon: MapPin, label: "Local Roots", desc: "West Valley born and raised." },
-                { icon: Shield, label: "Calm Under Pressure", desc: "When stress is high, we stay level." },
-                { icon: Heart, label: "People First", desc: "Your home. Your family. Our priority." },
-              ].map(({ icon: Icon, label, desc }) => (
-                <div key={label} className="flex items-start gap-3 bg-white/3 border border-white/5 rounded-xl p-4">
-                  <div className="w-8 h-8 rounded-lg bg-brand-blue/20 border border-brand-blue/30 flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <Icon className="w-4 h-4 text-brand-blue-light" />
-                  </div>
-                  <div>
-                    <p className="text-white font-semibold text-sm">{label}</p>
-                    <p className="text-slate-500 text-xs mt-0.5">{desc}</p>
-                  </div>
-                </div>
-              ))}
+            {/* Offset secondary images */}
+            <div className="grid grid-cols-2 gap-3 mt-3">
+              <div className="relative overflow-hidden" style={{ borderRadius: "4px", border: "1px solid rgba(59,130,246,0.08)" }}>
+                <Image src="/the-crew.png" alt="The Cruz crew" width={340} height={220} className="w-full object-cover" />
+              </div>
+              <div className="relative overflow-hidden mt-5" style={{ borderRadius: "4px", border: "1px solid rgba(59,130,246,0.08)" }}>
+                {/* offset vertically — asymmetric tension */}
+                <Image src="/on-site.png" alt="On the job" width={340} height={220} className="w-full object-cover" />
+              </div>
             </div>
+
+            {/* Floating editorial label — overlapping grid */}
+            <div
+              className="absolute bottom-16 -right-4 lg:-right-8 px-4 py-3 text-sm font-semibold text-white"
+              style={{
+                background: "#E8960A",
+                borderRadius: "3px",
+                color: "#080E1A",
+                letterSpacing: "0.02em",
+                zIndex: 10,
+                fontSize: "0.75rem",
+                fontWeight: 700,
+                textTransform: "uppercase",
+              }}
+            >
+              Family Owned Since Day One
+            </div>
+          </motion.div>
+
+          {/* RIGHT: Editorial copy blocks */}
+          <motion.div
+            initial={{ opacity: 0, x: 24 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}
+            className="flex flex-col gap-8 lg:pt-4"
+          >
+            {/* Block 1 */}
+            <div className="border-l-2 pl-5" style={{ borderColor: "rgba(59,130,246,0.3)" }}>
+              <h3 className="font-display font-bold text-white text-xl mb-2">We Show Up Calm When Things Are Stressful</h3>
+              <p className="text-slate-400 text-sm leading-relaxed">
+                A burst pipe, a failed water heater, a backed-up drain — your home is under stress. We&apos;ve been here before. We walk in level-headed, assess fast, and communicate clearly before touching anything.
+              </p>
+            </div>
+
+            {/* Block 2 */}
+            <div className="border-l-2 pl-5" style={{ borderColor: "rgba(232,150,10,0.3)" }}>
+              <h3 className="font-display font-bold text-white text-xl mb-2">Respectful In Your Home. Always.</h3>
+              <p className="text-slate-400 text-sm leading-relaxed">
+                Shoe covers. Clean workspace. Straight answers. We don&apos;t leave a mess or a mystery. You know what was wrong, what we did, and what it cost — before we do it.
+              </p>
+            </div>
+
+            {/* Block 3 */}
+            <div className="border-l-2 pl-5" style={{ borderColor: "rgba(16,185,129,0.3)" }}>
+              <h3 className="font-display font-bold text-white text-xl mb-2">The Work Has to Hold</h3>
+              <p className="text-slate-400 text-sm leading-relaxed">
+                We don&apos;t do band-aid repairs. If something needs to be done right, we say so. We&apos;d rather take a little more time and have it last than rush and come back.
+              </p>
+            </div>
+
+            {/* Pull quote */}
+            <div className="py-5 px-6"
+              style={{ background: "rgba(12,22,38,0.8)", border: "1px solid rgba(255,255,255,0.05)", borderRadius: "4px" }}>
+              <p className="text-white text-base leading-relaxed italic">
+                &ldquo;You&apos;re not just another job to us. This is your home — and that matters.&rdquo;
+              </p>
+              <p className="text-slate-500 text-sm mt-2 font-medium">— Cruz Family</p>
+            </div>
+
+            {/* CTA */}
+            <a
+              href="#quote"
+              className="inline-flex items-center gap-2 text-sm font-semibold group w-fit"
+              style={{ color: "#93C5FD" }}
+            >
+              Get a same-day quote
+              <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />
+            </a>
           </motion.div>
         </div>
       </div>

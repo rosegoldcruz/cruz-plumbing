@@ -3,181 +3,137 @@
 import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { Phone, Search, CheckCircle2 } from "lucide-react";
-import Image from "next/image";
 
 const steps = [
   {
-    step: "01",
+    n: "01",
     icon: Phone,
     title: "Call or Request a Quote",
-    desc: "One call or a quick form. We pick up — no hold music, no call centers. Just us.",
-    color: "text-brand-blue-light",
-    glow: "shadow-[0_0_30px_rgba(59,130,246,0.3)]",
-    border: "border-brand-blue/40",
+    desc: "One call or one form. We answer — no hold music, no call centers. Just us.",
+    accent: "#3B82F6",
   },
   {
-    step: "02",
+    n: "02",
     icon: Search,
     title: "We Diagnose Fast",
-    desc: "We show up on time, assess what's happening, and give you a clear upfront price before touching anything.",
-    color: "text-brand-accent",
-    glow: "shadow-[0_0_30px_rgba(245,158,11,0.2)]",
-    border: "border-brand-accent/40",
+    desc: "On time. Upfront price before anything starts. No pressure, no mystery.",
+    accent: "#E8960A",
   },
   {
-    step: "03",
+    n: "03",
     icon: CheckCircle2,
-    title: "You Get It Fixed",
-    desc: "We do the work right. Clean up after ourselves. And you get your home back — the way it should be.",
-    color: "text-green-400",
-    glow: "shadow-[0_0_30px_rgba(74,222,128,0.2)]",
-    border: "border-green-500/40",
+    title: "Fixed. Right. Clean.",
+    desc: "We do the work, clean up, and you get your home back exactly how it should be.",
+    accent: "#10B981",
   },
 ];
 
 export default function HowItWorks() {
-  const sectionRef = useRef<HTMLDivElement>(null);
+  const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const loadGSAP = async () => {
+    const load = async () => {
       const gsap = (await import("gsap")).default;
       const { ScrollTrigger } = await import("gsap/ScrollTrigger");
       gsap.registerPlugin(ScrollTrigger);
-
-      if (!sectionRef.current) return;
-
-      const cards = sectionRef.current.querySelectorAll(".step-card");
-      const line = sectionRef.current.querySelector(".connector-line");
+      if (!ref.current) return;
 
       gsap.fromTo(
-        cards,
-        { opacity: 0, y: 50 },
+        ref.current.querySelectorAll(".step"),
+        { opacity: 0, y: 36 },
         {
-          opacity: 1,
-          y: 0,
-          duration: 0.7,
-          stagger: 0.2,
+          opacity: 1, y: 0,
+          duration: 0.65, stagger: 0.18,
           ease: "power3.out",
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top 70%",
-            once: true,
-          },
+          scrollTrigger: { trigger: ref.current, start: "top 72%", once: true },
         }
       );
-
-      if (line) {
-        gsap.fromTo(
-          line,
-          { scaleX: 0 },
-          {
-            scaleX: 1,
-            duration: 1.2,
-            ease: "power2.inOut",
-            scrollTrigger: {
-              trigger: sectionRef.current,
-              start: "top 70%",
-              once: true,
-            },
-          }
-        );
-      }
     };
-    loadGSAP();
+    load();
   }, []);
 
   return (
-    <section id="how-it-works" ref={sectionRef} className="relative py-24 lg:py-32 bg-brand-navy overflow-hidden">
-      {/* Background accent */}
-      <div className="absolute bottom-0 left-0 right-0 h-1/2 bg-gradient-to-t from-brand-navy-light/50 to-transparent" />
+    <section
+      id="how-it-works"
+      ref={ref}
+      className="relative py-24 lg:py-32 overflow-hidden"
+      style={{ background: "linear-gradient(180deg, #080E1A 0%, #0C1626 100%)" }}
+    >
+      <div className="absolute inset-0 blueprint-bg opacity-50 pointer-events-none" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
         {/* Header */}
-        <div className="text-center mb-20">
+        <div className="max-w-2xl mb-16">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="inline-flex items-center gap-2 bg-green-500/10 border border-green-500/20 rounded-full px-4 py-2 mb-6"
           >
-            <CheckCircle2 className="w-4 h-4 text-green-400" />
-            <span className="text-green-400 text-sm font-semibold tracking-widest uppercase">How It Works</span>
-          </motion.div>
-
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="font-display font-bold text-4xl sm:text-5xl text-white mb-4"
-          >
-            Simple. Fast. Done Right.
-          </motion.h2>
-
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-slate-400 text-xl max-w-xl mx-auto"
-          >
-            No runaround. No confusion. Just three steps from your call to a fixed home.
-          </motion.p>
-        </div>
-
-        {/* Steps */}
-        <div className="relative">
-          {/* Connector line (desktop) */}
-          <div className="hidden lg:block absolute top-16 left-1/6 right-1/6 h-0.5 bg-gradient-to-r from-brand-blue/20 via-brand-blue/60 to-green-500/20 origin-left connector-line" style={{ transform: "scaleX(0)" }} />
-
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
-            {steps.map((s, i) => {
-              const Icon = s.icon;
-              return (
-                <div
-                  key={s.step}
-                  className="step-card relative flex flex-col items-center text-center"
-                  style={{ opacity: 0 }}
-                >
-                  {/* Number + icon */}
-                  <div className="relative mb-6">
-                    <div className={`w-20 h-20 rounded-2xl bg-brand-navy-light border ${s.border} ${s.glow} flex items-center justify-center transition-transform duration-300 hover:scale-110`}>
-                      <Icon className={`w-9 h-9 ${s.color}`} />
-                    </div>
-                    <div className="absolute -top-3 -right-3 w-8 h-8 rounded-full bg-brand-navy border border-white/10 flex items-center justify-center">
-                      <span className="font-display font-bold text-xs text-slate-400">{s.step}</span>
-                    </div>
-                  </div>
-
-                  <h3 className="font-display font-bold text-xl text-white mb-3">{s.title}</h3>
-                  <p className="text-slate-400 text-base leading-relaxed max-w-xs">{s.desc}</p>
-
-                  {/* Arrow between steps (mobile) */}
-                  {i < steps.length - 1 && (
-                    <div className="lg:hidden mt-8 text-slate-600 text-2xl">↓</div>
-                  )}
-                </div>
-              );
-            })}
-          </div>
-        </div>
-
-        {/* Photo strip */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7, delay: 0.4 }}
-          className="mt-20 grid grid-cols-3 gap-4 max-w-3xl mx-auto"
-        >
-          {["/on-site.png", "/main.png", "/the-crew.png"].map((src, i) => (
-            <div key={i} className="relative aspect-video rounded-2xl overflow-hidden border border-white/10 shadow-xl">
-              <Image src={src} alt="Cruz Plumbing team on the job" fill className="object-cover" />
-              <div className="absolute inset-0 bg-gradient-to-t from-brand-navy/50 to-transparent" />
+            <div className="flex items-center gap-3 mb-5">
+              <div className="h-px w-6 bg-brand-accent-hot" />
+              <span className="authority-badge text-brand-accent-hot">How It Works</span>
             </div>
-          ))}
-        </motion.div>
+            <h2
+              className="font-display font-bold text-white"
+              style={{ fontSize: "clamp(2rem, 4vw, 3.2rem)", lineHeight: 1.05, letterSpacing: "-0.02em" }}
+            >
+              Simple. Fast.
+              <br />
+              <span style={{ color: "#93C5FD" }}>Done Right.</span>
+            </h2>
+            <p className="text-slate-400 text-lg mt-4">
+              Three steps. No runaround. From your call to a fixed home.
+            </p>
+          </motion.div>
+        </div>
+
+        {/* Steps — slightly offset, not perfectly aligned */}
+        <div className="grid lg:grid-cols-3 gap-5 lg:gap-6">
+          {steps.map((s, i) => {
+            const Icon = s.icon;
+            return (
+              <div
+                key={s.n}
+                className="step relative flex flex-col gap-5 p-7 lg:p-8"
+                style={{
+                  opacity: 0,
+                  background: "rgba(12,22,38,0.7)",
+                  border: "1px solid rgba(255,255,255,0.06)",
+                  borderRadius: "5px",
+                  marginTop: i === 1 ? "24px" : "0",  // middle card pushed down = asymmetry
+                }}
+              >
+                {/* Step number — large, ghosted */}
+                <span
+                  className="absolute top-5 right-6 font-display font-bold pointer-events-none select-none"
+                  style={{ fontSize: "4rem", lineHeight: 1, color: "rgba(255,255,255,0.04)", letterSpacing: "-0.05em" }}
+                >
+                  {s.n}
+                </span>
+
+                {/* Icon */}
+                <div className="w-12 h-12 flex items-center justify-center"
+                  style={{ background: `${s.accent}12`, border: `1px solid ${s.accent}30`, borderRadius: "4px" }}>
+                  <Icon className="w-6 h-6" style={{ color: s.accent }} />
+                </div>
+
+                <div>
+                  <h3 className="font-display font-bold text-white text-xl mb-2">{s.title}</h3>
+                  <p className="text-slate-400 text-sm leading-relaxed">{s.desc}</p>
+                </div>
+
+                {/* Connector arrow (desktop, between cards) */}
+                {i < steps.length - 1 && (
+                  <div className="hidden lg:block absolute -right-4 top-1/2 -translate-y-1/2 z-10 text-slate-700 text-lg">
+                    →
+                  </div>
+                )}
+              </div>
+            );
+          })}
+        </div>
       </div>
     </section>
   );

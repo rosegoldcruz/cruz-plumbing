@@ -28,14 +28,16 @@ export default function StickyCallButton() {
             <div className="flex gap-3 max-w-sm mx-auto">
               <a
                 href="tel:6235513781"
-                className="hero-pulse flex-1 flex items-center justify-center gap-2 bg-brand-blue text-white font-bold py-3.5 rounded-xl text-sm shadow-[0_0_20px_rgba(59,130,246,0.4)]"
+                className="hero-pulse flex-1 flex items-center justify-center gap-2 font-bold py-3.5 text-sm"
+                style={{ background: "#E8960A", color: "#080E1A", borderRadius: "5px" }}
               >
                 <Phone className="w-4 h-4" />
                 Call Now
               </a>
               <a
                 href="#quote"
-                className="flex-1 flex items-center justify-center gap-2 bg-white/10 border border-white/20 text-white font-semibold py-3.5 rounded-xl text-sm"
+                className="flex-1 flex items-center justify-center gap-2 border border-white/15 text-white font-semibold py-3.5 text-sm"
+                style={{ background: "rgba(255,255,255,0.06)", borderRadius: "5px" }}
               >
                 <MessageSquare className="w-4 h-4" />
                 Get Quote
@@ -57,13 +59,15 @@ export default function StickyCallButton() {
                   initial={{ opacity: 0, y: 20, scale: 0.9 }}
                   animate={{ opacity: 1, y: 0, scale: 1 }}
                   exit={{ opacity: 0, y: 10, scale: 0.9 }}
-                  className="absolute bottom-16 right-0 bg-brand-navy border border-white/20 rounded-2xl p-4 shadow-2xl w-56"
+                  className="absolute bottom-16 right-0 p-4 shadow-2xl w-56"
+                  style={{ background: "#0C1626", border: "1px solid rgba(59,130,246,0.18)", borderRadius: "6px" }}
                 >
                   <p className="text-white font-semibold text-sm mb-3">Ready to help!</p>
                   <div className="flex flex-col gap-2">
                     <a
                       href="tel:6235513781"
-                      className="flex items-center gap-2 bg-brand-blue text-white font-bold px-4 py-2.5 rounded-xl text-sm"
+                      className="flex items-center gap-2 font-bold px-4 py-2.5 text-sm"
+                      style={{ background: "#E8960A", color: "#080E1A", borderRadius: "4px" }}
                     >
                       <Phone className="w-4 h-4" />
                       (623) 551-3781
@@ -71,7 +75,8 @@ export default function StickyCallButton() {
                     <a
                       href="#quote"
                       onClick={() => setExpanded(false)}
-                      className="flex items-center gap-2 bg-white/10 border border-white/20 text-white font-medium px-4 py-2.5 rounded-xl text-sm"
+                      className="flex items-center gap-2 border border-white/15 text-white font-medium px-4 py-2.5 text-sm"
+                      style={{ background: "rgba(255,255,255,0.05)", borderRadius: "4px" }}
                     >
                       <MessageSquare className="w-4 h-4" />
                       Request Quote
@@ -83,9 +88,10 @@ export default function StickyCallButton() {
 
             <motion.button
               onClick={() => setExpanded(!expanded)}
-              whileHover={{ scale: 1.1 }}
+              whileHover={{ scale: 1.08 }}
               whileTap={{ scale: 0.95 }}
-              className="hero-pulse w-14 h-14 rounded-full bg-brand-blue shadow-[0_0_30px_rgba(59,130,246,0.6)] flex items-center justify-center text-white"
+              className="hero-pulse w-14 h-14 flex items-center justify-center text-white shadow-[0_4px_24px_rgba(232,150,10,0.4)]"
+              style={{ background: "#E8960A", borderRadius: "6px", color: "#080E1A" }}
             >
               <AnimatePresence mode="wait">
                 {expanded ? (

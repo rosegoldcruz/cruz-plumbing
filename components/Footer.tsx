@@ -23,12 +23,12 @@ const services = [
 
 export default function Footer() {
   return (
-    <footer className="relative bg-brand-navy border-t border-white/10 overflow-hidden">
+    <footer className="relative overflow-hidden" style={{ background: "#080E1A", borderTop: "1px solid rgba(59,130,246,0.12)" }}>
       {/* Gradient top */}
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-brand-blue/40 to-transparent" />
 
       {/* Pre-footer CTA strip */}
-      <div className="bg-gradient-to-r from-brand-blue-dark/60 to-brand-navy py-10 px-4">
+      <div className="py-10 px-4" style={{ background: "linear-gradient(90deg, rgba(20,40,100,0.4) 0%, rgba(8,14,26,0) 100%)" }}>
         <div className="max-w-4xl mx-auto text-center">
           <p className="text-slate-400 text-sm mb-2 tracking-widest uppercase font-semibold">Don&apos;t wait on a problem that gets worse</p>
           <h3 className="font-display font-bold text-3xl text-white mb-6">
@@ -38,7 +38,8 @@ export default function Footer() {
             href="tel:6235513781"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.97 }}
-            className="hero-pulse inline-flex items-center gap-3 bg-brand-blue hover:bg-brand-blue-light text-white font-bold text-xl px-10 py-4 rounded-2xl shadow-[0_0_40px_rgba(59,130,246,0.4)] transition-all duration-200"
+            className="hero-pulse inline-flex items-center gap-3 font-bold text-xl px-10 py-4 transition-all duration-150 hover:opacity-90"
+            style={{ background: "#E8960A", color: "#080E1A", borderRadius: "5px" }}
           >
             <Phone className="w-5 h-5" />
             (623) 551-3781
