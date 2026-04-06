@@ -1,130 +1,10 @@
 "use client";
 
-import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
+// useEffect/useRef now live in PipeFlowBackground
 import { Phone, ArrowRight, Shield, Star, CheckCircle } from "lucide-react";
 import Image from "next/image";
-
-/* ─── Flow canvas: water / pressure motion ────────────────────── */
-function FlowCanvas() {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
-
-    let t = 0;
-    let raf: number;
-
-    const resize = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    };
-    resize();
-    window.addEventListener("resize", resize, { passive: true });
-
-    const draw = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      t += 0.004; // very slow — barely perceptible movement
-
-      /* ── Pressure flow lines (horizontal, pipe-like) ── */
-      for (let i = 0; i < 12; i++) {
-        const y = (canvas.height / 13) * (i + 1);
-        const speed = 0.3 + i * 0.07;
-        const amplitude = 6 + i * 1.5;
-        const alpha = 0.018 + (i % 3) * 0.006;
-
-        ctx.beginPath();
-        for (let x = 0; x <= canvas.width; x += 4) {
-          const wave =
-            Math.sin((x / canvas.width) * Math.PI * 2.5 + t * speed + i * 0.9) * amplitude +
-            Math.sin((x / canvas.width) * Math.PI * 1.2 + t * speed * 0.6 + i) * (amplitude * 0.4);
-          if (x === 0) ctx.moveTo(x, y + wave);
-          else ctx.lineTo(x, y + wave);
-        }
-
-        const grad = ctx.createLinearGradient(0, y, canvas.width, y);
-        grad.addColorStop(0,   `rgba(30,64,175,0)`);
-        grad.addColorStop(0.2, `rgba(30,64,175,${alpha})`);
-        grad.addColorStop(0.5, `rgba(59,130,246,${alpha * 1.6})`);
-        grad.addColorStop(0.8, `rgba(30,64,175,${alpha})`);
-        grad.addColorStop(1,   `rgba(30,64,175,0)`);
-        ctx.strokeStyle = grad;
-        ctx.lineWidth = i % 4 === 0 ? 1.2 : 0.6;
-        ctx.stroke();
-      }
-
-      /* ── Ambient pressure orbs (slow, deep) ── */
-      const orbs = [
-        { rx: 0.15, ry: 0.25, r: 320, s: 0.4 },
-        { rx: 0.82, ry: 0.55, r: 380, s: 0.6 },
-        { rx: 0.5,  ry: 0.88, r: 260, s: 0.5 },
-      ];
-      orbs.forEach((o, i) => {
-        const pulse = Math.sin(t * o.s + i * 1.7) * 0.008;
-        const alpha = 0.05 + pulse;
-        const ox = canvas.width  * o.rx + Math.sin(t * 0.3 + i) * 20;
-        const oy = canvas.height * o.ry + Math.cos(t * 0.2 + i) * 15;
-
-        const g = ctx.createRadialGradient(ox, oy, 0, ox, oy, o.r);
-        g.addColorStop(0, `rgba(20,52,148,${alpha * 2.2})`);
-        g.addColorStop(0.5, `rgba(15,40,120,${alpha})`);
-        g.addColorStop(1, "rgba(8,14,26,0)");
-        ctx.fillStyle = g;
-        ctx.beginPath();
-        ctx.arc(ox, oy, o.r, 0, Math.PI * 2);
-        ctx.fill();
-      });
-
-      /* ── Directional light sweep (cinematic depth) ── */
-      const sweepX = canvas.width * (0.5 + Math.sin(t * 0.18) * 0.4);
-      const sweep = ctx.createRadialGradient(sweepX, 0, 0, sweepX, 0, canvas.height * 1.1);
-      sweep.addColorStop(0, "rgba(59,130,246,0.04)");
-      sweep.addColorStop(1, "rgba(8,14,26,0)");
-      ctx.fillStyle = sweep;
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-      raf = requestAnimationFrame(draw);
-    };
-
-    draw();
-    return () => {
-      cancelAnimationFrame(raf);
-      window.removeEventListener("resize", resize);
-    };
-  }, []);
-
-  return (
-    <canvas
-      ref={canvasRef}
-      className="absolute inset-0 w-full h-full pointer-events-none"
-      style={{ zIndex: 0 }}
-    />
-  );
-}
-
-/* ─── Blueprint pipe accent (static SVG layer) ────────────────── */
-function BlueprintAccent() {
-  return (
-    <svg
-      className="absolute inset-0 w-full h-full pointer-events-none"
-      style={{ zIndex: 1, opacity: 0.025 }}
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      {/* Pipe network schematic — extremely faint */}
-      <line x1="0" y1="30%" x2="40%" y2="30%" stroke="#3B82F6" strokeWidth="1" />
-      <line x1="40%" y1="30%" x2="40%" y2="60%" stroke="#3B82F6" strokeWidth="1" />
-      <line x1="40%" y1="60%" x2="100%" y2="60%" stroke="#3B82F6" strokeWidth="1" />
-      <circle cx="40%" cy="30%" r="4" stroke="#3B82F6" strokeWidth="1" fill="none" />
-      <circle cx="40%" cy="60%" r="4" stroke="#3B82F6" strokeWidth="1" fill="none" />
-      <line x1="60%" y1="0" x2="60%" y2="30%" stroke="#3B82F6" strokeWidth="0.5" strokeDasharray="6 4" />
-      <line x1="20%" y1="60%" x2="20%" y2="100%" stroke="#3B82F6" strokeWidth="0.5" strokeDasharray="6 4" />
-      <rect x="58%" y="28%" width="4%" height="4%" stroke="#3B82F6" strokeWidth="0.5" fill="none" />
-    </svg>
-  );
-}
+import PipeFlowBackground from "./PipeFlowBackground";
 
 /* ─── HERO ────────────────────────────────────────────────────── */
 export default function Hero() {
@@ -140,9 +20,8 @@ export default function Hero() {
       className="relative min-h-screen flex flex-col overflow-hidden"
       style={{ background: "linear-gradient(160deg, #080E1A 0%, #0C1626 55%, #0A1830 100%)" }}
     >
-      {/* Layers */}
-      <FlowCanvas />
-      <BlueprintAccent />
+      {/* SVG pipe flow — GSAP dashoffset animation */}
+      <PipeFlowBackground />
 
       {/* Hard vignette edges */}
       <div className="absolute inset-0 pointer-events-none" style={{
