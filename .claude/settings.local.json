@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm init:*)",
+      "Bash(npm install:*)",
+      "Bash(npx next:*)",
+      "Read(//c/Users/Vulpi/.claude/projects/C--Users-Vulpi-Cruz-plumbing/**)",
+      "Read(//c/Users/Vulpi/.claude/projects/C--Users-Vulpi-Cruz-plumbing/memory/**)",
+      "Bash(git init:*)",
+      "Bash(git branch:*)",
+      "Bash(git remote:*)",
+      "Bash(git add:*)"
+    ]
+  }
+}
