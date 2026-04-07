@@ -1,16 +1,9 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import dynamic from "next/dynamic";
-import { motion, useReducedMotion } from "framer-motion";
+import { motion } from "framer-motion";
 import { Phone, ArrowRight, Shield, Star, CheckCircle } from "lucide-react";
 import Image from "next/image";
-
-/* Dynamic import — R3F is browser-only, this is already a client component */
-const VaultLockBg = dynamic(() => import("./Pipe3DScene"), {
-  ssr: false,
-  loading: () => null,
-});
+import WaterRippleBackground from "./WaterRippleBackground";
 
 /* ─── Fade-up factory ─────────────────────────────────────── */
 const fadeUp = (delay: number) => ({
@@ -23,44 +16,14 @@ const fadeUp = (delay: number) => ({
    HERO
 ═══════════════════════════════════════════════════════════ */
 export default function Hero() {
-  const prefersReducedMotion = useReducedMotion();
-  const [render3D, setRender3D] = useState(false);
-
-  useEffect(() => {
-    if (prefersReducedMotion) return;
-    if (window.innerWidth < 1024) return;
-
-    const hasIdleCallback =
-      typeof window.requestIdleCallback === "function" &&
-      typeof window.cancelIdleCallback === "function";
-
-    let timerId: number | undefined;
-    let idleId: number | undefined;
-
-    if (hasIdleCallback) {
-      idleId = window.requestIdleCallback(() => setRender3D(true), { timeout: 1200 });
-    } else {
-      timerId = window.setTimeout(() => setRender3D(true), 600);
-    }
-
-    return () => {
-      if (hasIdleCallback && typeof idleId === "number") {
-        window.cancelIdleCallback(idleId);
-      }
-      if (typeof timerId === "number") {
-        window.clearTimeout(timerId);
-      }
-    };
-  }, [prefersReducedMotion]);
-
   return (
     <section
       id="hero"
       className="relative min-h-screen flex flex-col overflow-hidden"
-      style={{ background: "#000000" }}
+      style={{ background: "#050505" }}
     >
-      {/* ── Full-screen 3D vault-lock background ── */}
-      {render3D ? <VaultLockBg /> : null}
+      {/* ── Interactive water-ripple background ── */}
+      <WaterRippleBackground />
 
       {/* ── Left-side readability gradient ── */}
       <div
