@@ -25,7 +25,7 @@ export default function Footer() {
   return (
     <footer
       className="relative overflow-hidden"
-      style={{ background: "#000000", borderTop: "1px solid rgba(0,82,204,0.15)" }}
+      style={{ background: "#050505", borderTop: "1px solid rgba(0,82,204,0.15)" }}
     >
       {/* Gradient top accent */}
       <div className="absolute top-0 left-0 right-0 h-px"
@@ -93,12 +93,27 @@ export default function Footer() {
             href="tel:6235513781"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.97 }}
-            className="hero-pulse inline-flex items-center gap-3 font-bold text-xl px-10 py-4 text-white"
-            style={{ background: "#0052CC", borderRadius: "5px" }}
+            className="hero-pulse metal-button inline-flex items-center gap-3 font-bold text-xl px-10 py-4 text-white"
+            style={{ borderRadius: "5px" }}
           >
             <Phone className="w-5 h-5" />
             (623) 551-3781
           </motion.a>
+        </div>
+      </div>
+
+      <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 pt-8">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+          {[
+            { src: "/the-crews.png", alt: "Crew lineup" },
+            { src: "/written-piece.png", alt: "Feature article" },
+            { src: "/Cruise Trump.png", alt: "Cruz service van" },
+            { src: "/summer.png", alt: "Summer service call" },
+          ].map((shot) => (
+            <div key={shot.src} className="relative photo-frame rounded-[6px] aspect-[1.2/0.82]">
+              <Image src={shot.src} alt={shot.alt} fill className="object-cover" sizes="25vw" />
+            </div>
+          ))}
         </div>
       </div>
 
@@ -109,8 +124,8 @@ export default function Footer() {
           {/* Brand column */}
           <div className="lg:col-span-1">
             <div className="flex items-center gap-3 mb-5">
-              <div className="relative w-12 h-12">
-                <Image src="/cruz-biz.png" alt="Cruz Plumbing" fill className="object-contain" />
+              <div className="relative w-16 h-12 photo-frame rounded-[4px] overflow-hidden">
+                <Image src="/Cruise Trump.png" alt="Cruz Plumbing" fill className="object-cover" />
               </div>
               <div>
                 <p
@@ -131,11 +146,11 @@ export default function Footer() {
             <p className="text-slate-400 text-sm leading-relaxed mb-5">
               Trusted plumbing for West Valley families. We treat your home like our own — because that&apos;s what neighbors do.
             </p>
-            <div className="flex items-center gap-2 mb-3">
+            <div className="surface-pressed grain-panel flex items-center gap-2 mb-3 px-3 py-3 rounded-[6px]">
               <Shield className="w-4 h-4 flex-shrink-0" style={{ color: "#2684FF" }} />
               <span className="text-slate-400 text-sm">AZ License #1050063</span>
             </div>
-            <div className="flex items-center gap-1 mb-5">
+            <div className="surface-pressed grain-panel flex items-center gap-1 mb-5 px-3 py-3 rounded-[6px]">
               {[...Array(5)].map((_, i) => (
                 <Star key={i} className="w-4 h-4 fill-brand-blue-lt text-brand-blue-lt" />
               ))}
@@ -143,11 +158,11 @@ export default function Footer() {
             </div>
             <div className="flex items-center gap-3">
               <a href="#" aria-label="Facebook"
-                className="w-9 h-9 rounded-lg bg-white/5 border border-white/8 hover:border-brand-blue/50 flex items-center justify-center text-slate-400 hover:text-white transition-all">
+                className="w-10 h-10 rounded-lg surface-pressed flex items-center justify-center text-slate-400 hover:text-white transition-all">
                 <Facebook className="w-4 h-4" />
               </a>
               <a href="#" aria-label="Instagram"
-                className="w-9 h-9 rounded-lg bg-white/5 border border-white/8 hover:border-brand-blue/50 flex items-center justify-center text-slate-400 hover:text-white transition-all">
+                className="w-10 h-10 rounded-lg surface-pressed flex items-center justify-center text-slate-400 hover:text-white transition-all">
                 <Instagram className="w-4 h-4" />
               </a>
             </div>

@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { Phone, Clock, Zap } from "lucide-react";
+import Image from "next/image";
 import QuoteForm from "./QuoteForm";
 
 function PressureCanvas() {
@@ -65,7 +66,7 @@ export default function HardCTA() {
     <section
       id="quote"
       className="relative py-24 lg:py-32 overflow-hidden"
-      style={{ background: "#000000" }}
+      style={{ background: "#050505" }}
     >
       <PressureCanvas />
 
@@ -122,9 +123,8 @@ export default function HardCTA() {
               transition={{ duration: 0.6, delay: 0.15 }}
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
-              className="hero-pulse inline-flex items-center gap-4 font-bold text-xl text-white"
+              className="hero-pulse metal-button inline-flex items-center gap-4 font-bold text-xl text-white"
               style={{
-                background: "#0052CC",
                 borderRadius: "6px",
                 padding: "18px 32px",
                 letterSpacing: "0.01em",
@@ -143,17 +143,26 @@ export default function HardCTA() {
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
               transition={{ delay: 0.35, duration: 0.5 }}
-              className="flex flex-col gap-2 mt-6"
+              className="flex flex-col gap-3 mt-6"
             >
-              <div className="flex items-center gap-2 text-slate-500 text-sm">
+              <div className="surface-pressed grain-panel flex items-center gap-3 text-slate-400 text-sm px-4 py-3 rounded-[6px]">
                 <Clock className="w-3.5 h-3.5 flex-shrink-0" style={{ color: "#2684FF" }} />
                 Real person answers. No hold music.
               </div>
-              <div className="flex items-center gap-2 text-slate-500 text-sm">
+              <div className="surface-pressed grain-panel flex items-center gap-3 text-slate-400 text-sm px-4 py-3 rounded-[6px]">
                 <Zap className="w-3.5 h-3.5 flex-shrink-0" style={{ color: "#2684FF" }} />
                 Same-day availability in most cases.
               </div>
             </motion.div>
+
+            <div className="grid grid-cols-2 gap-3 mt-8 max-w-xl">
+              <div className="relative photo-frame rounded-[6px] aspect-[1.08/0.9]">
+                <Image src="/flyer-1.png" alt="Cruz family story feature" fill className="object-cover" sizes="240px" />
+              </div>
+              <div className="relative photo-frame rounded-[6px] aspect-[1.08/0.9] translate-y-5">
+                <Image src="/flyer-2.png" alt="Cruz business feature" fill className="object-cover" sizes="240px" />
+              </div>
+            </div>
 
             {/* Tone line */}
             <motion.p
@@ -176,10 +185,8 @@ export default function HardCTA() {
             transition={{ duration: 0.75, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
           >
             <div
-              className="p-7 lg:p-8"
+              className="p-7 lg:p-8 surface-elevated grain-panel"
               style={{
-                background: "#1A1A1A",
-                border: "1px solid rgba(0,82,204,0.16)",
                 borderRadius: "6px",
               }}
             >

@@ -1,5 +1,18 @@
 import type { Metadata, Viewport } from "next";
+import { Archivo_Narrow, Sora } from "next/font/google";
 import "./globals.css";
+
+const bodyFont = Sora({
+  subsets: ["latin"],
+  variable: "--font-body",
+  weight: ["400", "500", "600", "700", "800"],
+});
+
+const displayFont = Archivo_Narrow({
+  subsets: ["latin"],
+  variable: "--font-display",
+  weight: ["400", "500", "600", "700"],
+});
 
 export const metadata: Metadata = {
   title: "Cruz Plumbing | Trusted Family Plumbing – Avondale, Goodyear & West Valley AZ",
@@ -34,11 +47,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-      </head>
-      <body>{children}</body>
+      <body className={`${bodyFont.variable} ${displayFont.variable}`}>{children}</body>
     </html>
   );
 }

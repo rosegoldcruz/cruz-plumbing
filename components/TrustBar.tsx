@@ -1,15 +1,15 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { Clock, Shield, DollarSign, Phone, Heart, Award } from "lucide-react";
+import Image from "next/image";
 
 const pillars = [
-  { icon: Clock,      label: "Same Day Service",   sub: "We show up when it matters" },
-  { icon: Shield,     label: "Licensed & Insured",  sub: "AZ License #1050063" },
-  { icon: DollarSign, label: "Upfront Pricing",     sub: "No surprise bills. Ever." },
-  { icon: Phone,      label: "24/7 Emergency",      sub: "We pick up the phone" },
-  { icon: Heart,      label: "Family Owned",        sub: "Real people. Real care." },
-  { icon: Award,      label: "5-Star Rated",        sub: "West Valley's go-to plumber" },
+  { image: "/housecalls.png", label: "Same Day Service", sub: "We show up when it matters" },
+  { image: "/apprentice.png", label: "Licensed & Insured", sub: "AZ License #1050063" },
+  { image: "/summer.png", label: "Upfront Pricing", sub: "No surprise bills. Ever." },
+  { image: "/van.png", label: "24/7 Emergency", sub: "We pick up the phone" },
+  { image: "/pupper.png", label: "Family Owned", sub: "Real people. Real care." },
+  { image: "/crew2.png", label: "5-Star Rated", sub: "West Valley's go-to plumber" },
 ];
 
 export default function TrustBar() {
@@ -40,7 +40,7 @@ export default function TrustBar() {
     <div
       ref={ref}
       className="relative py-10"
-      style={{ background: "#000000" }}
+      style={{ background: "#050505" }}
     >
       {/* Top + bottom edge lines */}
       <div className="sharp-divider" />
@@ -54,25 +54,30 @@ export default function TrustBar() {
       }} />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 divide-x"
-          style={{ borderColor: "rgba(255,255,255,0.05)" }}>
-          {pillars.map((p, i) => {
-            const Icon = p.icon;
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
+          {pillars.map((p) => {
             return (
               <div
                 key={p.label}
-                className="pillar flex flex-col items-center text-center gap-2.5 px-4 py-5 group"
+                className="pillar surface-pressed grain-panel flex flex-col items-center text-center gap-3 px-3 py-4 group rounded-[6px]"
                 style={{
                   opacity: 0,
-                  borderRight: i < pillars.length - 1 ? "1px solid rgba(255,255,255,0.05)" : "none",
                 }}
               >
-                <div className="w-9 h-9 flex items-center justify-center transition-transform duration-200 group-hover:scale-110"
-                  style={{ background: "rgba(0,82,204,0.09)", border: "1px solid rgba(0,82,204,0.18)", borderRadius: "4px" }}>
-                  <Icon className="w-4 h-4" style={{ color: "#2684FF" }} />
+                <div className="relative w-full aspect-[1.25/0.86] rounded-[5px] overflow-hidden photo-frame">
+                  <Image
+                    src={p.image}
+                    alt={p.label}
+                    fill
+                    className="object-cover transition-transform duration-300 group-hover:scale-[1.03]"
+                    sizes="(max-width: 1024px) 50vw, 16vw"
+                  />
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="inline-flex w-2 h-2 rounded-full bg-brand-blue-light led-glow" />
+                  <p className="text-white font-semibold text-sm leading-tight">{p.label}</p>
                 </div>
                 <div>
-                  <p className="text-white font-semibold text-sm leading-tight">{p.label}</p>
                   <p className="text-slate-600 text-xs mt-0.5">{p.sub}</p>
                 </div>
               </div>

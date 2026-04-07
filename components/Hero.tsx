@@ -101,9 +101,8 @@ export default function Hero() {
                   whileHover={{ scale: 1.03 }}
                   whileTap={{ scale: 0.97 }}
                   transition={{ duration: 0.14 }}
-                  className="hero-pulse inline-flex items-center justify-center gap-3 text-white font-bold px-7 py-4 text-base"
+                  className="hero-pulse metal-button inline-flex items-center justify-center gap-3 text-white font-bold px-7 py-4 text-base"
                   style={{
-                    background: "#0052CC",
                     borderRadius: "5px",
                     letterSpacing: "0.01em",
                   }}
@@ -120,10 +119,9 @@ export default function Hero() {
                     borderColor: "rgba(38,132,255,0.5)",
                   }}
                   transition={{ duration: 0.14 }}
-                  className="inline-flex items-center justify-center gap-2 text-slate-200 font-semibold px-7 py-4 text-base"
+                  className="surface-pressed grain-panel inline-flex items-center justify-center gap-2 text-slate-200 font-semibold px-7 py-4 text-base"
                   style={{
                     borderRadius: "5px",
-                    border: "1px solid rgba(255,255,255,0.12)",
                     letterSpacing: "0.01em",
                   }}
                 >
@@ -167,7 +165,7 @@ export default function Hero() {
 
               {/* Van image */}
               <div
-                className="relative overflow-hidden drift-anim"
+                className="relative overflow-hidden drift-anim photo-frame surface-elevated grain-panel"
                 style={{ borderRadius: "4px", zIndex: 1 }}
               >
                 <Image

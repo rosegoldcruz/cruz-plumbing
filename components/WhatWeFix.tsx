@@ -2,14 +2,15 @@
 
 import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
-import { Droplets, Flame, Wind, Wrench, AlertTriangle, Gauge, ArrowRight, Phone } from "lucide-react";
+import { ArrowRight, Phone } from "lucide-react";
+import Image from "next/image";
 
 const featured = {
-  icon: AlertTriangle,
   pain: "Pipe burst? Water pouring? Can't wait?",
   title: "Emergency Plumbing",
   desc: "When your home is under threat, you need someone calm, fast, and on their way. We answer. We show up. We stop the damage.",
   callout: "We don't guess. We fix it right.",
+  image: "/housecalls.png",
   color: "#EF4444",
   bg: "rgba(239,68,68,0.06)",
   border: "rgba(239,68,68,0.22)",
@@ -17,38 +18,38 @@ const featured = {
 
 const secondary = [
   {
-    icon: Droplets,
     pain: "Got a leak?",
     title: "Leak Detection & Repair",
     desc: "Hidden or obvious — we find it fast and seal it right the first time.",
+    image: "/on-site.png",
     color: "#2684FF",
     border: "rgba(38,132,255,0.18)",
   },
   {
-    icon: Flame,
     pain: "No hot water?",
     title: "Water Heater Repair",
     desc: "Same-day repair or replacement. We carry units on the truck.",
+    image: "/van.png",
     color: "#F97316",
     border: "rgba(249,115,22,0.18)",
   },
   {
-    icon: Wind,
     pain: "Drain backing up?",
     title: "Drain Cleaning",
     desc: "Cleared fast, root causes identified. Not a band-aid fix.",
+    image: "/summer.png",
     color: "#10B981",
     border: "rgba(16,185,129,0.18)",
   },
 ];
 
 const strip = [
-  { icon: Gauge,    label: "Low Pressure" },
-  { icon: Wrench,   label: "Fixture Install" },
-  { icon: Droplets, label: "Toilet Repair" },
-  { icon: Wrench,   label: "Pipe Reroute" },
-  { icon: Flame,    label: "Water Softeners" },
-  { icon: Wind,     label: "Sewer Line" },
+  { label: "Low Pressure" },
+  { label: "Fixture Install" },
+  { label: "Toilet Repair" },
+  { label: "Pipe Reroute" },
+  { label: "Water Softeners" },
+  { label: "Sewer Line" },
 ];
 
 export default function WhatWeFix() {
@@ -130,11 +131,10 @@ export default function WhatWeFix() {
           {/* Featured — dominant */}
           <a
             href="#quote"
-            className="svc-reveal group relative flex flex-col justify-between overflow-hidden p-8 lg:p-10"
+            className="svc-reveal surface-elevated grain-panel group relative flex flex-col justify-between overflow-hidden p-8 lg:p-10"
             style={{
               opacity: 0,
               background: featured.bg,
-              border: `1px solid ${featured.border}`,
               borderRadius: "6px",
               minHeight: "340px",
             }}
@@ -143,10 +143,9 @@ export default function WhatWeFix() {
               style={{ background: "radial-gradient(ellipse at 100% 0%, rgba(239,68,68,0.09) 0%, transparent 70%)" }} />
 
             <div>
-              <div className="flex items-start justify-between mb-6">
-                <div className="w-14 h-14 flex items-center justify-center"
-                  style={{ background: "rgba(239,68,68,0.1)", border: `1px solid ${featured.border}`, borderRadius: "4px" }}>
-                  <featured.icon className="w-7 h-7" style={{ color: featured.color }} />
+              <div className="flex items-start justify-between mb-6 gap-6">
+                <div className="relative w-32 sm:w-40 aspect-[1.18/0.82] photo-frame rounded-[5px] shrink-0">
+                  <Image src={featured.image} alt={featured.title} fill className="object-cover" sizes="160px" />
                 </div>
                 <div className="flex items-center gap-2">
                   <span className="relative flex h-2 w-2">
@@ -187,22 +186,18 @@ export default function WhatWeFix() {
           {/* Secondary stack */}
           <div className="flex flex-col gap-4">
             {secondary.map((s) => {
-              const Icon = s.icon;
               return (
                 <a
                   key={s.title}
                   href="#quote"
-                  className="svc-reveal group flex items-start gap-5 p-6 transition-all duration-200"
+                  className="svc-reveal surface-elevated grain-panel group flex items-start gap-5 p-4 sm:p-6 transition-all duration-200"
                   style={{
                     opacity: 0,
-                    background: "#1A1A1A",
-                    border: `1px solid ${s.border}`,
                     borderRadius: "6px",
                   }}
                 >
-                  <div className="w-11 h-11 flex-shrink-0 flex items-center justify-center mt-0.5"
-                    style={{ background: `${s.color}12`, border: `1px solid ${s.border}`, borderRadius: "4px" }}>
-                    <Icon className="w-5 h-5" style={{ color: s.color }} />
+                  <div className="relative w-24 sm:w-28 aspect-[1/1] flex-shrink-0 photo-frame rounded-[5px] mt-0.5">
+                    <Image src={s.image} alt={s.title} fill className="object-cover" sizes="112px" />
                   </div>
                   <div className="flex-1 min-w-0">
                     <p className="text-slate-500 text-xs italic mb-0.5">{s.pain}</p>
@@ -223,23 +218,20 @@ export default function WhatWeFix() {
           className="svc-reveal mt-5 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6"
           style={{
             opacity: 0,
-            border: "1px solid rgba(0,82,204,0.14)",
             borderRadius: "6px",
-            background: "#1A1A1A",
           }}
         >
           {strip.map((item, i) => {
-            const Icon = item.icon;
             return (
               <a
                 key={i}
                 href="#quote"
-                className="group flex items-center gap-3 px-5 py-4 transition-all duration-200 hover:bg-brand-blue/5"
+                className="surface-pressed grain-panel group flex items-center gap-3 px-5 py-4 transition-all duration-200 hover:bg-brand-blue/5"
                 style={{
                   borderRight: i < strip.length - 1 ? "1px solid rgba(0,82,204,0.1)" : "none",
                 }}
               >
-                <Icon className="w-4 h-4 text-slate-500 group-hover:text-brand-blue-lt transition-colors duration-200 flex-shrink-0" />
+                <span className="w-2 h-2 rounded-full bg-brand-blue-light led-glow flex-shrink-0" />
                 <span className="text-slate-400 group-hover:text-slate-200 text-sm font-medium transition-colors duration-200 whitespace-nowrap">
                   {item.label}
                 </span>
@@ -254,21 +246,20 @@ export default function WhatWeFix() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="mt-12 flex flex-col sm:flex-row items-center justify-between gap-6 px-6 py-5"
+          className="relative mt-12 flex flex-col sm:flex-row items-center justify-between gap-6 px-6 py-5"
           style={{
-            background: "#1A1A1A",
-            border: "1px solid rgba(255,255,255,0.04)",
             borderRadius: "6px",
           }}
         >
-          <div>
+          <div className="absolute inset-0 surface-pressed rounded-[6px] pointer-events-none" />
+          <div className="relative z-10">
             <p className="text-white font-semibold text-base">Not sure what&apos;s wrong?</p>
             <p className="text-slate-400 text-sm mt-0.5">Call us. We&apos;ll diagnose it over the phone — for free.</p>
           </div>
           <a
             href="tel:6235513781"
-            className="hero-pulse flex items-center gap-2 font-bold text-sm px-6 py-3 text-white flex-shrink-0"
-            style={{ background: "#0052CC", borderRadius: "5px", letterSpacing: "0.01em" }}
+            className="relative z-10 hero-pulse metal-button flex items-center gap-2 font-bold text-sm px-6 py-3 text-white flex-shrink-0"
+            style={{ borderRadius: "5px", letterSpacing: "0.01em" }}
           >
             <Phone className="w-4 h-4" />
             (623) 551-3781

@@ -9,7 +9,7 @@ export default function AboutFamily() {
     <section
       id="about"
       className="relative py-24 lg:py-36 overflow-hidden"
-      style={{ background: "#000000" }}
+      style={{ background: "#050505" }}
     >
       {/* Directional light — comes from right */}
       <div className="absolute top-0 right-0 w-[600px] h-[600px] pointer-events-none"
@@ -67,7 +67,7 @@ export default function AboutFamily() {
             className="relative"
           >
             {/* Main image — large, slightly cropped */}
-            <div className="relative overflow-hidden" style={{ borderRadius: "4px", border: "1px solid rgba(59,130,246,0.1)" }}>
+            <div className="relative overflow-hidden photo-frame grain-panel surface-elevated" style={{ borderRadius: "4px" }}>
               <Image
                 src="/main.png"
                 alt="Cruz Plumbing — family team"
@@ -81,10 +81,10 @@ export default function AboutFamily() {
 
             {/* Offset secondary images */}
             <div className="grid grid-cols-2 gap-3 mt-3">
-              <div className="relative overflow-hidden" style={{ borderRadius: "4px", border: "1px solid rgba(59,130,246,0.08)" }}>
+              <div className="relative overflow-hidden photo-frame" style={{ borderRadius: "4px" }}>
                 <Image src="/the-crew.png" alt="The Cruz crew" width={340} height={220} className="w-full object-cover" />
               </div>
-              <div className="relative overflow-hidden mt-5" style={{ borderRadius: "4px", border: "1px solid rgba(59,130,246,0.08)" }}>
+              <div className="relative overflow-hidden mt-5 photo-frame" style={{ borderRadius: "4px" }}>
                 {/* offset vertically — asymmetric tension */}
                 <Image src="/on-site.png" alt="On the job" width={340} height={220} className="w-full object-cover" />
               </div>
@@ -117,7 +117,7 @@ export default function AboutFamily() {
             className="flex flex-col gap-8 lg:pt-4"
           >
             {/* Block 1 */}
-            <div className="border-l-2 pl-5" style={{ borderColor: "rgba(59,130,246,0.3)" }}>
+            <div className="surface-pressed grain-panel border-l-2 pl-5 pr-4 py-4 rounded-r-[6px]" style={{ borderColor: "rgba(59,130,246,0.3)" }}>
               <h3 className="font-display font-bold text-white text-xl mb-2">We Show Up Calm When Things Are Stressful</h3>
               <p className="text-slate-400 text-sm leading-relaxed">
                 A burst pipe, a failed water heater, a backed-up drain — your home is under stress. We&apos;ve been here before. We walk in level-headed, assess fast, and communicate clearly before touching anything.
@@ -125,7 +125,7 @@ export default function AboutFamily() {
             </div>
 
             {/* Block 2 */}
-            <div className="border-l-2 pl-5" style={{ borderColor: "rgba(232,150,10,0.3)" }}>
+            <div className="surface-pressed grain-panel border-l-2 pl-5 pr-4 py-4 rounded-r-[6px]" style={{ borderColor: "rgba(232,150,10,0.3)" }}>
               <h3 className="font-display font-bold text-white text-xl mb-2">Respectful In Your Home. Always.</h3>
               <p className="text-slate-400 text-sm leading-relaxed">
                 Shoe covers. Clean workspace. Straight answers. We don&apos;t leave a mess or a mystery. You know what was wrong, what we did, and what it cost — before we do it.
@@ -133,7 +133,7 @@ export default function AboutFamily() {
             </div>
 
             {/* Block 3 */}
-            <div className="border-l-2 pl-5" style={{ borderColor: "rgba(16,185,129,0.3)" }}>
+            <div className="surface-pressed grain-panel border-l-2 pl-5 pr-4 py-4 rounded-r-[6px]" style={{ borderColor: "rgba(16,185,129,0.3)" }}>
               <h3 className="font-display font-bold text-white text-xl mb-2">The Work Has to Hold</h3>
               <p className="text-slate-400 text-sm leading-relaxed">
                 We don&apos;t do band-aid repairs. If something needs to be done right, we say so. We&apos;d rather take a little more time and have it last than rush and come back.
@@ -141,8 +141,8 @@ export default function AboutFamily() {
             </div>
 
             {/* Pull quote */}
-            <div className="py-5 px-6"
-              style={{ background: "rgba(12,22,38,0.8)", border: "1px solid rgba(255,255,255,0.05)", borderRadius: "4px" }}>
+            <div className="py-5 px-6 surface-elevated grain-panel"
+              style={{ borderRadius: "4px" }}>
               <p className="text-white text-base leading-relaxed italic">
                 &ldquo;You&apos;re not just another job to us. This is your home — and that matters.&rdquo;
               </p>
