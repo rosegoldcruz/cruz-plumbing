@@ -177,7 +177,7 @@ export default function Hero() {
                 style={{ borderRadius: "4px", zIndex: 1 }}
               >
                 <Image
-                  src="/van.png"
+                  src="/written-piece.png"
                   alt="Cruz Plumbing — On the job"
                   width={680}
                   height={520}

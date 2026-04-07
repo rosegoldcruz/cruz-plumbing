@@ -73,6 +73,14 @@ export default function Navigation() {
 
             {/* CTA */}
             <div className="hidden md:flex items-center gap-3">
+              <div className="relative w-11 h-11 overflow-hidden rounded-sm border border-white/15">
+                <Image
+                  src="/Cruise Trump.png"
+                  alt="Cruz Plumbing team"
+                  fill
+                  className="object-cover"
+                />
+              </div>
               <a
                 href="tel:6235513781"
                 className="hero-pulse flex items-center gap-2 text-white font-bold px-5 py-2.5 text-sm transition-all duration-150 hover:opacity-90"
@@ -117,6 +125,14 @@ export default function Navigation() {
                   {link.label}
                 </a>
               ))}
+              <div className="relative w-full h-36 overflow-hidden rounded-sm border border-white/15">
+                <Image
+                  src="/Cruise Trump.png"
+                  alt="Cruz Plumbing team"
+                  fill
+                  className="object-cover"
+                />
+              </div>
               <a
                 href="tel:6235513781"
                 className="flex items-center justify-center gap-2 text-white font-bold px-6 py-4 text-lg mt-2"
