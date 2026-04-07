@@ -6,6 +6,9 @@ import { motion, useReducedMotion } from "framer-motion";
 import { Phone, ArrowRight, Shield, Star, CheckCircle } from "lucide-react";
 import Image from "next/image";
 
+type IdleRequest = (callback: IdleRequestCallback, options?: IdleRequestOptions) => number;
+type IdleCancel = (handle: number) => void;
+
 /* Dynamic import — R3F is browser-only, this is already a client component */
 const VaultLockBg = dynamic(() => import("./Pipe3DScene"), {
   ssr: false,
@@ -30,17 +33,19 @@ export default function Hero() {
     if (prefersReducedMotion) return;
     if (window.innerWidth < 1024) return;
 
-    const idleId =
-      "requestIdleCallback" in window
-        ? window.requestIdleCallback(() => setRender3D(true), { timeout: 1200 })
-        : window.setTimeout(() => setRender3D(true), 600);
+    const requestIdle = (window as Window & { requestIdleCallback?: IdleRequest }).requestIdleCallback;
+    const cancelIdle = (window as Window & { cancelIdleCallback?: IdleCancel }).cancelIdleCallback;
+
+    const idleId = requestIdle
+      ? requestIdle(() => setRender3D(true), { timeout: 1200 })
+      : window.setTimeout(() => setRender3D(true), 600);
 
     return () => {
-      if (typeof idleId === "number") {
+      if (requestIdle && cancelIdle) {
+        cancelIdle(idleId);
+      } else {
         window.clearTimeout(idleId);
-        return;
       }
-      window.cancelIdleCallback(idleId);
     };
   }, [prefersReducedMotion]);
 
