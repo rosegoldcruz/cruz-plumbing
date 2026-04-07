@@ -1,13 +1,15 @@
+import dynamic from "next/dynamic";
 import Navigation from "@/components/Navigation";
 import Hero from "@/components/Hero";
-import TrustBar from "@/components/TrustBar";
-import WhatWeFix from "@/components/WhatWeFix";
-import HowItWorks from "@/components/HowItWorks";
-import SocialProof from "@/components/SocialProof";
-import AboutFamily from "@/components/AboutFamily";
-import HardCTA from "@/components/HardCTA";
-import Footer from "@/components/Footer";
 import StickyCallButton from "@/components/StickyCallButton";
+
+const TrustBar = dynamic(() => import("@/components/TrustBar"));
+const WhatWeFix = dynamic(() => import("@/components/WhatWeFix"));
+const HowItWorks = dynamic(() => import("@/components/HowItWorks"));
+const SocialProof = dynamic(() => import("@/components/SocialProof"));
+const AboutFamily = dynamic(() => import("@/components/AboutFamily"));
+const HardCTA = dynamic(() => import("@/components/HardCTA"));
+const Footer = dynamic(() => import("@/components/Footer"));
 
 export default function Home() {
   return (

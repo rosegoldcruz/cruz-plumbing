@@ -1,7 +1,8 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { Phone, ArrowRight, Shield, Star, CheckCircle } from "lucide-react";
 import Image from "next/image";
 
@@ -22,6 +23,27 @@ const fadeUp = (delay: number) => ({
    HERO
 ═══════════════════════════════════════════════════════════ */
 export default function Hero() {
+  const prefersReducedMotion = useReducedMotion();
+  const [render3D, setRender3D] = useState(false);
+
+  useEffect(() => {
+    if (prefersReducedMotion) return;
+    if (window.innerWidth < 1024) return;
+
+    const idleId =
+      "requestIdleCallback" in window
+        ? window.requestIdleCallback(() => setRender3D(true), { timeout: 1200 })
+        : window.setTimeout(() => setRender3D(true), 600);
+
+    return () => {
+      if (typeof idleId === "number") {
+        window.clearTimeout(idleId);
+        return;
+      }
+      window.cancelIdleCallback(idleId);
+    };
+  }, [prefersReducedMotion]);
+
   return (
     <section
       id="hero"
@@ -29,7 +51,7 @@ export default function Hero() {
       style={{ background: "#000000" }}
     >
       {/* ── Full-screen 3D vault-lock background ── */}
-      <VaultLockBg />
+      {render3D ? <VaultLockBg /> : null}
 
       {/* ── Left-side readability gradient ── */}
       <div

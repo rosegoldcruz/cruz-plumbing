@@ -13,17 +13,78 @@
   --brand-blue-glow: #4C9AFF;
   --ink:             #F0F4FF;
   --muted:           #6B7280;
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-top: env(safe-area-inset-top, 0px);
 }
 
 /* ─── RESET ──────────────────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; padding: 0; margin: 0; }
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+  overflow-x: clip;
+  -webkit-text-size-adjust: 100%;
+}
 
 body {
   background: var(--brand-black);
   color: var(--ink);
   font-family: 'Inter', system-ui, sans-serif;
   overflow-x: hidden;
+  overscroll-behavior-y: none;
+  text-rendering: optimizeLegibility;
+}
+
+main { overflow-x: clip; }
+
+/* Make media predictable and prevent accidental overflow/CLS */
+img, video, canvas, svg {
+  max-width: 100%;
+}
+
+/* Touch ergonomics and responsive input behavior */
+a, button, [role="button"], input, select, textarea {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+button,
+[type="button"],
+[type="submit"],
+[type="reset"] {
+  min-height: 48px;
+  min-width: 48px;
+}
+
+input, select, textarea {
+  font-size: 16px;
+}
+
+a:active,
+button:active,
+[role="button"]:active {
+  transform: translateY(1px);
+  filter: brightness(0.96);
+}
+
+/* Utilities for mobile-safe fixed UI */
+.safe-area-bottom {
+  padding-bottom: calc(0.75rem + var(--safe-bottom));
+}
+
+.safe-area-top {
+  padding-top: var(--safe-top);
+}
+
+.overscroll-contain {
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+}
+
+.thumb-zone-primary {
+  position: fixed;
+  inset-inline: 0;
+  bottom: 0;
+  z-index: 50;
 }
 
 /* ─── TYPOGRAPHY ─────────────────────────────────────────────── */
@@ -92,7 +153,7 @@ h1, h2, h3 {
 /* Authority label */
 .authority-badge {
   font-family: 'Inter', sans-serif;
-  font-size: 0.65rem;
+  font-size: clamp(0.65rem, 1.7vw, 0.8rem);
   font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;

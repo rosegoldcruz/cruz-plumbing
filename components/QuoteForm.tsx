@@ -62,7 +62,7 @@ export default function QuoteForm() {
   const inputClass = (field: keyof typeof form) =>
     `w-full bg-white/5 border ${
       errors[field] ? "border-red-500/60" : "border-white/10 focus:border-brand-blue/60"
-    } rounded-xl px-4 py-3 text-white placeholder-slate-500 text-sm transition-all duration-200 outline-none focus:bg-white/8 focus:ring-1 focus:ring-brand-blue/40`;
+    } rounded-xl px-4 py-3 text-white placeholder-slate-500 text-base md:text-sm transition-all duration-200 outline-none focus:bg-white/8 focus:ring-1 focus:ring-brand-blue/40`;
 
   return (
     <div className="relative">

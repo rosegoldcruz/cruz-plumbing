@@ -23,13 +23,13 @@ export default function StickyCallButton() {
             animate={{ y: 0 }}
             exit={{ y: 100 }}
             transition={{ type: "spring", stiffness: 300, damping: 30 }}
-            className="md:hidden fixed bottom-0 left-0 right-0 z-50 backdrop-blur-xl border-t border-white/10 px-4 py-3 safe-area-bottom"
+            className="md:hidden thumb-zone-primary backdrop-blur-xl border-t border-white/10 px-4 py-3 safe-area-bottom"
             style={{ background: "rgba(0,0,0,0.97)" }}
           >
             <div className="flex gap-3 max-w-sm mx-auto">
               <a
                 href="tel:6235513781"
-                className="hero-pulse flex-1 flex items-center justify-center gap-2 font-bold py-3.5 text-sm"
+                className="hero-pulse flex-1 min-h-12 flex items-center justify-center gap-2 font-bold py-3.5 text-sm"
                 style={{ background: "#0052CC", color: "#ffffff", borderRadius: "5px" }}
               >
                 <Phone className="w-4 h-4" />
@@ -37,7 +37,7 @@ export default function StickyCallButton() {
               </a>
               <a
                 href="#quote"
-                className="flex-1 flex items-center justify-center gap-2 border border-white/15 text-white font-semibold py-3.5 text-sm"
+                className="flex-1 min-h-12 flex items-center justify-center gap-2 border border-white/15 text-white font-semibold py-3.5 text-sm"
                 style={{ background: "rgba(255,255,255,0.06)", borderRadius: "5px" }}
               >
                 <MessageSquare className="w-4 h-4" />

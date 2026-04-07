@@ -32,7 +32,7 @@ export default function Navigation() {
           scrolled
             ? "border-b shadow-[0_1px_0_rgba(59,130,246,0.12)]"
             : "bg-transparent"
-        }`}
+        } safe-area-top`}
         style={scrolled ? { background: "rgba(0,0,0,0.96)", backdropFilter: "blur(12px)" } : {}}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -86,7 +86,7 @@ export default function Navigation() {
 
             {/* Mobile menu toggle */}
             <button
-              className="md:hidden text-white p-2"
+              className="md:hidden text-white w-12 h-12 inline-flex items-center justify-center"
               onClick={() => setMenuOpen(!menuOpen)}
               aria-label="Toggle menu"
             >
@@ -104,7 +104,7 @@ export default function Navigation() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-x-0 top-16 z-40 backdrop-blur-xl border-b border-white/10 md:hidden"
+            className="fixed inset-x-0 top-16 z-40 backdrop-blur-xl border-b border-white/10 md:hidden overscroll-contain max-h-[calc(100dvh-4rem)] overflow-y-auto"
             style={{ background: "rgba(0,0,0,0.97)" }}
           >
             <div className="px-6 py-6 flex flex-col gap-5">
