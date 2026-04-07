@@ -509,14 +509,6 @@ export default function Pipe3DScene() {
 
   const handlePhase = useCallback((p: Phase) => setPhase(p), []);
 
-  // Allow re-trigger on click when locked
-  const handleReplay = useCallback(() => {
-    if (phase === "locked") {
-      setPhase("idle");
-      setKey(k => k + 1);
-    }
-  }, [phase]);
-
   return (
     <div
       style={{
@@ -525,8 +517,8 @@ export default function Pipe3DScene() {
         width: "100%",
         height: "100%",
         overflow: "hidden",
+        pointerEvents: "none",
       }}
-      onClick={phase === "locked" ? handleReplay : undefined}
     >
       <Canvas
         key={key}
@@ -537,7 +529,7 @@ export default function Pipe3DScene() {
           alpha: true,
           powerPreference: "high-performance",
         }}
-        style={{ width: "100%", height: "100%", display: "block" }}
+        style={{ width: "100%", height: "100%", display: "block", pointerEvents: "none" }}
       >
         <Suspense fallback={null}>
           <VaultLockScene onPhaseChange={handlePhase} />
