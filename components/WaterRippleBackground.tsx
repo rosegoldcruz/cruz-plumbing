@@ -12,6 +12,9 @@ type Ripple = {
   strength: number;
   driftX: number;
   driftY: number;
+  rotation: number;
+  eccentricity: number;
+  wobble: number;
 };
 
 const BASE_COLOR = "#050505";
@@ -67,6 +70,9 @@ export default function WaterRippleBackground() {
         strength,
         driftX: (Math.random() - 0.5) * 9,
         driftY: (Math.random() - 0.5) * 9,
+        rotation: Math.random() * Math.PI,
+        eccentricity: 0.78 + Math.random() * 0.34,
+        wobble: Math.random() * Math.PI * 2,
       });
     };
 
@@ -104,36 +110,82 @@ export default function WaterRippleBackground() {
     const renderRipple = (ripple: Ripple) => {
       const progress = ripple.life / ripple.maxLife;
       const fade = 1 - progress;
-      const alpha = fade * 0.32 * ripple.strength;
+      const alpha = fade * 0.24 * ripple.strength;
       const driftX = ripple.driftX * progress;
       const driftY = ripple.driftY * progress;
       const x = ripple.x + driftX;
       const y = ripple.y + driftY;
+      const wobble = 1 + Math.sin(progress * 7 + ripple.wobble) * 0.08;
+      const radiusX = ripple.radius * ripple.eccentricity * wobble;
+      const radiusY = ripple.radius * (2.02 - ripple.eccentricity) * (2 - wobble);
+      const startA = ripple.rotation + progress * 0.65;
+      const midA = startA + Math.PI * (0.52 + ripple.strength * 0.08);
+      const endA = midA + Math.PI * (0.34 + ripple.strength * 0.12);
 
       context.save();
       context.globalCompositeOperation = "screen";
 
+      context.lineCap = "round";
+      context.shadowBlur = 18 + ripple.strength * 18;
+      context.shadowColor = `rgba(${HIGHLIGHT}, ${alpha})`;
+
       context.beginPath();
-      context.lineWidth = 1.2 + ripple.strength * 2.4;
+      context.lineWidth = 1 + ripple.strength * 2.1;
       context.strokeStyle = `rgba(${HIGHLIGHT}, ${alpha})`;
-      context.shadowBlur = 16 + ripple.strength * 20;
-      context.shadowColor = `rgba(${HIGHLIGHT}, ${alpha * 1.1})`;
-      context.arc(x, y, ripple.radius, 0, Math.PI * 2);
+      context.ellipse(x, y, radiusX, radiusY, ripple.rotation, startA, midA);
       context.stroke();
 
       context.beginPath();
-      context.lineWidth = 0.75 + ripple.strength * 1.3;
-      context.strokeStyle = `rgba(144, 202, 249, ${alpha * 0.75})`;
-      context.arc(x, y, ripple.radius * 0.68, 0, Math.PI * 2);
+      context.lineWidth = 0.8 + ripple.strength * 1.2;
+      context.strokeStyle = `rgba(144, 202, 249, ${alpha * 0.9})`;
+      context.ellipse(
+        x + Math.cos(ripple.rotation) * 3,
+        y + Math.sin(ripple.rotation) * 3,
+        radiusX * 0.72,
+        radiusY * 0.68,
+        ripple.rotation + 0.2,
+        midA - 0.85,
+        endA
+      );
       context.stroke();
 
-      const core = context.createRadialGradient(x, y, 0, x, y, ripple.radius * 1.8);
-      core.addColorStop(0, `rgba(${HIGHLIGHT}, ${alpha * 0.24})`);
-      core.addColorStop(0.4, `rgba(${HIGHLIGHT}, ${alpha * 0.09})`);
+      context.beginPath();
+      context.lineWidth = 0.7 + ripple.strength;
+      context.strokeStyle = `rgba(${HIGHLIGHT}, ${alpha * 0.5})`;
+      context.ellipse(
+        x - Math.cos(ripple.rotation) * 4,
+        y - Math.sin(ripple.rotation) * 2,
+        radiusX * 1.08,
+        radiusY * 0.88,
+        ripple.rotation - 0.18,
+        endA + 0.25,
+        endA + 1.65
+      );
+      context.stroke();
+
+      const streak = context.createLinearGradient(x - radiusX, y, x + radiusX, y);
+      streak.addColorStop(0, "rgba(0,0,0,0)");
+      streak.addColorStop(0.5, `rgba(${HIGHLIGHT}, ${alpha * 0.17})`);
+      streak.addColorStop(1, "rgba(0,0,0,0)");
+      context.strokeStyle = streak;
+      context.lineWidth = radiusY * 0.085;
+      context.beginPath();
+      context.moveTo(x - radiusX * 0.78, y + Math.sin(progress * 9 + ripple.wobble) * 4);
+      context.quadraticCurveTo(
+        x,
+        y - radiusY * 0.14,
+        x + radiusX * 0.82,
+        y + Math.cos(progress * 8 + ripple.wobble) * 4
+      );
+      context.stroke();
+
+      const core = context.createRadialGradient(x, y, 0, x, y, ripple.radius * 2.1);
+      core.addColorStop(0, `rgba(${HIGHLIGHT}, ${alpha * 0.12})`);
+      core.addColorStop(0.35, `rgba(${HIGHLIGHT}, ${alpha * 0.06})`);
       core.addColorStop(1, "rgba(0,0,0,0)");
       context.fillStyle = core;
       context.beginPath();
-      context.arc(x, y, ripple.radius * 1.8, 0, Math.PI * 2);
+      context.ellipse(x, y, radiusX * 1.18, radiusY * 1.08, ripple.rotation, 0, Math.PI * 2);
       context.fill();
 
       context.restore();
