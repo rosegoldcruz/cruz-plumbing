@@ -2,67 +2,37 @@
 
 import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
-import { Star } from "lucide-react";
+import { ArrowUpRight, Phone, ShieldCheck, Star } from "lucide-react";
 import Image from "next/image";
 
-const reviews = [
+const googleMapsUrl = "https://www.google.com/maps/place/Cruz+Plumbing+%26+Rooter+Services/@34.0268284,-118.2219299,10z/data=!4m8!3m7!1s0x80c33370852f3dd7:0x83fb16b5f3956e86!8m2!3d34.028404!4d-117.598009!9m1!1b1!16s%2Fg%2F11fpkgv3nh?entry=ttu&g_ep=EgoyMDI2MDQwNS4wIKXMDSoASAFQAw%3D%3D";
+
+const verifiedFacts = [
   {
-    name: "Maria G.",
-    location: "Avondale, AZ",
-    stars: 5,
-    text: "Showed up fast. Fixed it same day. Fair price. Like having a neighbor who happens to be a plumber.",
-    image: "/main.png",
-    service: "Emergency Pipe Repair",
-  },
-  {
-    name: "James T.",
-    location: "Goodyear, AZ",
-    stars: 5,
-    text: "Actually explained what was wrong with my water heater, gave me options, and didn't push the most expensive one. Real honest people.",
-    image: "/flyer-1.png",
-    service: "Water Heater Replacement",
-  },
-  {
-    name: "Sandra R.",
-    location: "Litchfield Park, AZ",
-    stars: 5,
-    text: "Respectful in my home — wore shoe covers, cleaned up after. The drain was cleared in under an hour.",
-    image: "/on-site.png",
-    service: "Drain Cleaning",
-  },
-  {
-    name: "Carlos M.",
-    location: "Tolleson, AZ",
-    stars: 5,
-    text: "Called at 8pm thinking I'd get a voicemail. They picked up and walked me through stopping the leak over the phone while they were on their way. Above and beyond.",
-    image: "/housecalls.png",
-    service: "Emergency Leak",
-  },
-  {
-    name: "Diane L.",
-    location: "Avondale, AZ",
-    stars: 5,
-    text: "Upfront price before starting. No surprise bill. Simple and honest.",
+    label: "Google Rating",
+    value: "4.9",
+    note: "Verified from the California Google Business Profile",
     image: "/Cruise Trump.png",
-    service: "Toilet Repair",
   },
   {
-    name: "Robert H.",
-    location: "Goodyear, AZ",
-    stars: 5,
-    text: "Family business all the way. You can feel it. We'll be calling Cruz Plumbing every time.",
+    label: "Call",
+    value: "(909) 391-4033",
+    note: "Phone number shown on the real listing",
+    image: "/housecalls.png",
+  },
+  {
+    label: "Website",
+    value: "cruzplumbingandrooter.com",
+    note: "Live site connected to the Google profile",
+    image: "/flyer-1.png",
+  },
+  {
+    label: "Profile Tags",
+    value: "Latino-owned · LGBTQ+ friendly",
+    note: "Attributes shown on the real listing",
     image: "/crew2.png",
-    service: "Fixture Install",
   },
 ];
-
-function Avatar({ image, name }: { image: string; name: string }) {
-  return (
-    <div className="relative w-12 h-12 flex-shrink-0 rounded-[4px] photo-frame">
-      <Image src={image} alt={name} fill className="object-cover" sizes="48px" />
-    </div>
-  );
-}
 
 export default function SocialProof() {
   const ref = useRef<HTMLDivElement>(null);
@@ -117,10 +87,13 @@ export default function SocialProof() {
               className="font-display font-bold text-white"
               style={{ fontSize: "clamp(2rem, 4vw, 3.2rem)", lineHeight: 1.05, letterSpacing: "-0.02em" }}
             >
-              Neighbors Trust Us.
+              Verified Google Profile.
               <br />
-              <span style={{ color: "#93C5FD" }}>Every Single Time.</span>
+              <span style={{ color: "#93C5FD" }}>No Invented Quotes.</span>
             </h2>
+            <p className="text-slate-400 text-base mt-5 max-w-xl">
+              The placeholder testimonials are gone. Until the exact review text is imported, this section only shows verified facts from the real California Google Business Profile.
+            </p>
           </motion.div>
 
           <motion.div
@@ -133,75 +106,89 @@ export default function SocialProof() {
             {/* Google rating block — right side */}
             <div className="inline-flex flex-col items-center lg:items-end gap-1">
               <div className="flex gap-1">
-                {[...Array(5)].map((_, i) => (
+                {[...Array(4)].map((_, i) => (
                   <Star key={i} className="w-6 h-6 fill-brand-blue-lt text-brand-blue-lt" />
                 ))}
+                <Star className="w-6 h-6 fill-brand-blue-lt/40 text-brand-blue-lt" />
               </div>
-              <p className="text-white font-display font-bold text-4xl">5.0</p>
-              <p className="text-slate-500 text-sm">Google Rating · West Valley, AZ</p>
+              <p className="text-white font-display font-bold text-4xl">4.9</p>
+              <p className="text-slate-500 text-sm">Google Rating · California listing</p>
             </div>
           </motion.div>
         </div>
 
-        {/* ── STAGGERED REVIEW GRID ── */}
-        {/* Row 1: 1 large + 2 small */}
-        <div className="grid lg:grid-cols-[1.4fr_1fr_1fr] gap-4 mb-4">
-          {reviews.slice(0, 3).map((r, i) => (
-            <div
-              key={r.name}
-              className="review-card surface-elevated grain-panel flex flex-col gap-4 p-6 transition-all duration-200 hover:border-white/10"
-              style={{
-                opacity: 0,
-                borderRadius: "5px",
-              }}
-            >
-              <div className="flex gap-0.5">
-                {[...Array(r.stars)].map((_, j) => (
-                  <Star key={j} className="w-3.5 h-3.5 fill-brand-blue-lt text-brand-blue-lt" />
-                ))}
-              </div>
-              <p className="text-slate-300 text-sm leading-relaxed flex-1">&ldquo;{r.text}&rdquo;</p>
-              <div className="flex items-center gap-3 pt-2" style={{ borderTop: "1px solid rgba(255,255,255,0.05)" }}>
-                <Avatar image={r.image} name={r.name} />
-                <div>
-                  <p className="text-white font-semibold text-sm">{r.name}</p>
-                  <p className="text-slate-600 text-xs">{r.location} · {r.service}</p>
+        <div className="grid lg:grid-cols-[1.2fr_0.8fr] gap-5 items-start">
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="review-card surface-elevated grain-panel p-6 sm:p-8 rounded-[6px]"
+            style={{ opacity: 0 }}
+          >
+            <div className="grid sm:grid-cols-[1.1fr_0.9fr] gap-6 items-center">
+              <div>
+                <p className="text-slate-500 text-xs tracking-[0.22em] uppercase font-semibold mb-3">Verified profile facts</p>
+                <h3 className="text-white font-display text-3xl leading-none mb-4">Cruz Plumbing & Rooter Services</h3>
+                <div className="flex items-center gap-2 mb-4 text-slate-300">
+                  <ShieldCheck className="w-4 h-4 text-brand-blue-lt" />
+                  Real Google Business Profile, not made-up review copy
+                </div>
+                <p className="text-slate-400 text-sm leading-relaxed mb-6">
+                  Google did not expose the public review bodies in a scrapeable response from the link you sent, so I removed the fake Arizona testimonials instead of keeping false social proof on the page.
+                </p>
+                <div className="flex flex-col sm:flex-row gap-3">
+                  <a
+                    href={googleMapsUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="metal-button inline-flex items-center justify-center gap-2 px-5 py-3 text-white font-semibold rounded-[6px]"
+                  >
+                    Read Reviews on Google
+                    <ArrowUpRight className="w-4 h-4" />
+                  </a>
+                  <a
+                    href="tel:19093914033"
+                    className="surface-pressed grain-panel inline-flex items-center justify-center gap-2 px-5 py-3 text-slate-200 font-semibold rounded-[6px]"
+                  >
+                    <Phone className="w-4 h-4 text-brand-blue-lt" />
+                    (909) 391-4033
+                  </a>
                 </div>
               </div>
+              <div className="relative photo-frame rounded-[6px] aspect-[1.08/1]">
+                <Image src="/written-piece.png" alt="Cruz Plumbing profile feature" fill className="object-cover" sizes="(max-width: 1024px) 100vw, 28vw" />
+              </div>
             </div>
-          ))}
-        </div>
+          </motion.div>
 
-        {/* Row 2: 2 small + 1 large */}
-        <div className="grid lg:grid-cols-[1fr_1fr_1.4fr] gap-4">
-          {reviews.slice(3).map((r) => (
+          <div className="grid gap-4">
+            {verifiedFacts.map((fact) => (
             <div
-              key={r.name}
+              key={fact.label}
               className="review-card surface-elevated grain-panel flex flex-col gap-4 p-6 transition-all duration-200 hover:border-white/10"
               style={{
                 opacity: 0,
                 borderRadius: "5px",
               }}
             >
-              <div className="flex gap-0.5">
-                {[...Array(r.stars)].map((_, j) => (
-                  <Star key={j} className="w-3.5 h-3.5 fill-brand-blue-lt text-brand-blue-lt" />
-                ))}
-              </div>
-              <p className="text-slate-300 text-sm leading-relaxed flex-1">&ldquo;{r.text}&rdquo;</p>
-              <div className="flex items-center gap-3 pt-2" style={{ borderTop: "1px solid rgba(255,255,255,0.05)" }}>
-                <Avatar image={r.image} name={r.name} />
-                <div>
-                  <p className="text-white font-semibold text-sm">{r.name}</p>
-                  <p className="text-slate-600 text-xs">{r.location} · {r.service}</p>
+              <div className="flex items-start gap-4">
+                <div className="relative w-20 h-20 flex-shrink-0 rounded-[5px] photo-frame">
+                  <Image src={fact.image} alt={fact.label} fill className="object-cover" sizes="80px" />
+                </div>
+                <div className="min-w-0">
+                  <p className="text-slate-500 text-xs tracking-[0.18em] uppercase font-semibold mb-1">{fact.label}</p>
+                  <p className="text-white font-semibold text-lg leading-tight">{fact.value}</p>
+                  <p className="text-slate-400 text-sm mt-2 leading-relaxed">{fact.note}</p>
                 </div>
               </div>
             </div>
-          ))}
+            ))}
+          </div>
         </div>
 
         <p className="text-slate-700 text-xs text-center mt-10">
-          Google & direct customer feedback · AZ License #1050063
+          Real listing metadata only until exact Google review excerpts are imported
         </p>
       </div>
     </section>
