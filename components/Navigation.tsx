@@ -33,7 +33,7 @@ export default function Navigation() {
             ? "border-b shadow-[0_1px_0_rgba(59,130,246,0.12)]"
             : "bg-transparent"
         }`}
-        style={scrolled ? { background: "rgba(8,14,26,0.96)", backdropFilter: "blur(12px)" } : {}}
+        style={scrolled ? { background: "rgba(0,0,0,0.96)", backdropFilter: "blur(12px)" } : {}}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16 md:h-20">
@@ -76,7 +76,7 @@ export default function Navigation() {
               <a
                 href="tel:6235513781"
                 className="hero-pulse flex items-center gap-2 text-white font-bold px-5 py-2.5 text-sm transition-all duration-150 hover:opacity-90"
-                style={{ background: "#E8960A", borderRadius: "5px", color: "#080E1A" }}
+                style={{ background: "#0052CC", borderRadius: "5px", color: "#ffffff" }}
               >
                 <Phone className="w-3.5 h-3.5" />
                 (623) 551-3781
@@ -103,7 +103,8 @@ export default function Navigation() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-x-0 top-16 z-40 bg-brand-navy/98 backdrop-blur-xl border-b border-white/10 md:hidden"
+            className="fixed inset-x-0 top-16 z-40 backdrop-blur-xl border-b border-white/10 md:hidden"
+            style={{ background: "rgba(0,0,0,0.97)" }}
           >
             <div className="px-6 py-6 flex flex-col gap-5">
               {links.map((link) => (
@@ -119,7 +120,7 @@ export default function Navigation() {
               <a
                 href="tel:6235513781"
                 className="flex items-center justify-center gap-2 text-white font-bold px-6 py-4 text-lg mt-2"
-                style={{ background: "#E8960A", borderRadius: "5px", color: "#080E1A" }}
+                style={{ background: "#0052CC", borderRadius: "5px", color: "#ffffff" }}
               >
                 <Phone className="w-5 h-5" />
                 Call Now — (623) 551-3781

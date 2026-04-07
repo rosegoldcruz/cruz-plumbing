@@ -99,7 +99,7 @@ export default function SocialProof() {
       id="reviews"
       ref={ref}
       className="relative py-24 lg:py-32 overflow-hidden"
-      style={{ background: "linear-gradient(180deg, #0C1626 0%, #080E1A 100%)" }}
+      style={{ background: "#000000" }}
     >
       {/* Subtle light from top-center */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[300px] pointer-events-none"
@@ -116,8 +116,8 @@ export default function SocialProof() {
             transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
           >
             <div className="flex items-center gap-3 mb-5">
-              <div className="h-px w-6 bg-brand-accent-hot" />
-              <span className="authority-badge text-brand-accent-hot">Customer Reviews</span>
+              <div className="h-px w-6 bg-brand-blue-lt" />
+              <span className="authority-badge text-brand-blue-lt">Customer Reviews</span>
             </div>
             <h2
               className="font-display font-bold text-white"
@@ -140,7 +140,7 @@ export default function SocialProof() {
             <div className="inline-flex flex-col items-center lg:items-end gap-1">
               <div className="flex gap-1">
                 {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-6 h-6 fill-amber-400 text-amber-400" />
+                  <Star key={i} className="w-6 h-6 fill-brand-blue-lt text-brand-blue-lt" />
                 ))}
               </div>
               <p className="text-white font-display font-bold text-4xl">5.0</p>
@@ -166,7 +166,7 @@ export default function SocialProof() {
               <Quote className="w-6 h-6" style={{ color: "rgba(59,130,246,0.25)" }} />
               <div className="flex gap-0.5">
                 {[...Array(r.stars)].map((_, j) => (
-                  <Star key={j} className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
+                  <Star key={j} className="w-3.5 h-3.5 fill-brand-blue-lt text-brand-blue-lt" />
                 ))}
               </div>
               <p className="text-slate-300 text-sm leading-relaxed flex-1">&ldquo;{r.text}&rdquo;</p>
@@ -197,7 +197,7 @@ export default function SocialProof() {
               <Quote className="w-6 h-6" style={{ color: "rgba(59,130,246,0.25)" }} />
               <div className="flex gap-0.5">
                 {[...Array(r.stars)].map((_, j) => (
-                  <Star key={j} className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
+                  <Star key={j} className="w-3.5 h-3.5 fill-brand-blue-lt text-brand-blue-lt" />
                 ))}
               </div>
               <p className="text-slate-300 text-sm leading-relaxed flex-1">&ldquo;{r.text}&rdquo;</p>

@@ -23,13 +23,14 @@ export default function StickyCallButton() {
             animate={{ y: 0 }}
             exit={{ y: 100 }}
             transition={{ type: "spring", stiffness: 300, damping: 30 }}
-            className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-brand-navy/98 backdrop-blur-xl border-t border-white/10 px-4 py-3 safe-area-bottom"
+            className="md:hidden fixed bottom-0 left-0 right-0 z-50 backdrop-blur-xl border-t border-white/10 px-4 py-3 safe-area-bottom"
+            style={{ background: "rgba(0,0,0,0.97)" }}
           >
             <div className="flex gap-3 max-w-sm mx-auto">
               <a
                 href="tel:6235513781"
                 className="hero-pulse flex-1 flex items-center justify-center gap-2 font-bold py-3.5 text-sm"
-                style={{ background: "#E8960A", color: "#080E1A", borderRadius: "5px" }}
+                style={{ background: "#0052CC", color: "#ffffff", borderRadius: "5px" }}
               >
                 <Phone className="w-4 h-4" />
                 Call Now
@@ -60,14 +61,14 @@ export default function StickyCallButton() {
                   animate={{ opacity: 1, y: 0, scale: 1 }}
                   exit={{ opacity: 0, y: 10, scale: 0.9 }}
                   className="absolute bottom-16 right-0 p-4 shadow-2xl w-56"
-                  style={{ background: "#0C1626", border: "1px solid rgba(59,130,246,0.18)", borderRadius: "6px" }}
+                  style={{ background: "#1A1A1A", border: "1px solid rgba(0,82,204,0.2)", borderRadius: "6px" }}
                 >
                   <p className="text-white font-semibold text-sm mb-3">Ready to help!</p>
                   <div className="flex flex-col gap-2">
                     <a
                       href="tel:6235513781"
                       className="flex items-center gap-2 font-bold px-4 py-2.5 text-sm"
-                      style={{ background: "#E8960A", color: "#080E1A", borderRadius: "4px" }}
+                      style={{ background: "#0052CC", color: "#ffffff", borderRadius: "4px" }}
                     >
                       <Phone className="w-4 h-4" />
                       (623) 551-3781
@@ -90,8 +91,8 @@ export default function StickyCallButton() {
               onClick={() => setExpanded(!expanded)}
               whileHover={{ scale: 1.08 }}
               whileTap={{ scale: 0.95 }}
-              className="hero-pulse w-14 h-14 flex items-center justify-center text-white shadow-[0_4px_24px_rgba(232,150,10,0.4)]"
-              style={{ background: "#E8960A", borderRadius: "6px", color: "#080E1A" }}
+              className="hero-pulse w-14 h-14 flex items-center justify-center text-white shadow-[0_4px_24px_rgba(0,82,204,0.45)]"
+              style={{ background: "#0052CC", borderRadius: "6px", color: "#ffffff" }}
             >
               <AnimatePresence mode="wait">
                 {expanded ? (

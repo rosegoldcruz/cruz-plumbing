@@ -40,14 +40,18 @@ export default function TrustBar() {
     <div
       ref={ref}
       className="relative py-10"
-      style={{ background: "#080E1A" }}
+      style={{ background: "#000000" }}
     >
       {/* Top + bottom edge lines */}
       <div className="sharp-divider" />
       <div className="absolute bottom-0 left-0 right-0 sharp-divider" />
 
       {/* Very subtle blueprint grid */}
-      <div className="absolute inset-0 blueprint-bg opacity-60 pointer-events-none" />
+      <div className="absolute inset-0 pointer-events-none" style={{
+        backgroundImage: "linear-gradient(rgba(0,82,204,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(0,82,204,0.04) 1px, transparent 1px)",
+        backgroundSize: "80px 80px",
+        opacity: 0.6,
+      }} />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 divide-x"
@@ -64,8 +68,8 @@ export default function TrustBar() {
                 }}
               >
                 <div className="w-9 h-9 flex items-center justify-center transition-transform duration-200 group-hover:scale-110"
-                  style={{ background: "rgba(59,130,246,0.08)", border: "1px solid rgba(59,130,246,0.12)", borderRadius: "4px" }}>
-                  <Icon className="w-4 h-4 text-brand-blue-light" />
+                  style={{ background: "rgba(0,82,204,0.09)", border: "1px solid rgba(0,82,204,0.18)", borderRadius: "4px" }}>
+                  <Icon className="w-4 h-4" style={{ color: "#2684FF" }} />
                 </div>
                 <div>
                   <p className="text-white font-semibold text-sm leading-tight">{p.label}</p>

@@ -23,23 +23,78 @@ const services = [
 
 export default function Footer() {
   return (
-    <footer className="relative overflow-hidden" style={{ background: "#080E1A", borderTop: "1px solid rgba(59,130,246,0.12)" }}>
-      {/* Gradient top */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-brand-blue/40 to-transparent" />
+    <footer
+      className="relative overflow-hidden"
+      style={{ background: "#000000", borderTop: "1px solid rgba(0,82,204,0.15)" }}
+    >
+      {/* Gradient top accent */}
+      <div className="absolute top-0 left-0 right-0 h-px"
+        style={{ background: "linear-gradient(90deg, transparent, rgba(0,82,204,0.5) 30%, rgba(38,132,255,0.7) 50%, rgba(0,82,204,0.5) 70%, transparent)" }} />
+
+      {/* ── SLOGAN BANNER ── */}
+      <div
+        className="py-12 px-4 text-center relative overflow-hidden"
+        style={{ background: "#0052CC" }}
+      >
+        {/* Subtle noise on slogan banner */}
+        <div className="absolute inset-0 pointer-events-none opacity-10"
+          style={{
+            backgroundImage: "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.3'/%3E%3C/svg%3E\")",
+          }}
+        />
+        <motion.p
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.65 }}
+          className="text-white font-display font-bold tracking-tight"
+          style={{
+            fontFamily: "'Archivo Narrow', 'Arial Narrow', sans-serif",
+            fontSize: "clamp(2rem, 5vw, 3.5rem)",
+            lineHeight: 1.0,
+            letterSpacing: "-0.01em",
+          }}
+        >
+          With Cruz You Don&apos;t Lose!
+        </motion.p>
+        <motion.p
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.25, duration: 0.5 }}
+          className="text-blue-100 text-base mt-3 font-medium"
+        >
+          Family-owned · Honest work · Done right the first time
+        </motion.p>
+      </div>
 
       {/* Pre-footer CTA strip */}
-      <div className="py-10 px-4" style={{ background: "linear-gradient(90deg, rgba(20,40,100,0.4) 0%, rgba(8,14,26,0) 100%)" }}>
+      <div
+        className="py-10 px-4"
+        style={{ background: "linear-gradient(90deg, rgba(0,52,153,0.2) 0%, rgba(0,0,0,0) 100%)" }}
+      >
         <div className="max-w-4xl mx-auto text-center">
-          <p className="text-slate-400 text-sm mb-2 tracking-widest uppercase font-semibold">Don&apos;t wait on a problem that gets worse</p>
-          <h3 className="font-display font-bold text-3xl text-white mb-6">
+          <p className="text-slate-500 text-sm mb-2 tracking-widest uppercase font-semibold">
+            Don&apos;t wait on a problem that gets worse
+          </p>
+          <h3
+            style={{
+              fontFamily: "'Archivo Narrow', 'Arial Narrow', sans-serif",
+              fontWeight: 700,
+              fontSize: "clamp(1.6rem, 3vw, 2.2rem)",
+              color: "#fff",
+              marginBottom: "24px",
+              lineHeight: 1.0,
+            }}
+          >
             One Call Fixes Everything.
           </h3>
           <motion.a
             href="tel:6235513781"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.97 }}
-            className="hero-pulse inline-flex items-center gap-3 font-bold text-xl px-10 py-4 transition-all duration-150 hover:opacity-90"
-            style={{ background: "#E8960A", color: "#080E1A", borderRadius: "5px" }}
+            className="hero-pulse inline-flex items-center gap-3 font-bold text-xl px-10 py-4 text-white"
+            style={{ background: "#0052CC", borderRadius: "5px" }}
           >
             <Phone className="w-5 h-5" />
             (623) 551-3781
@@ -48,7 +103,7 @@ export default function Footer() {
       </div>
 
       {/* Main footer grid */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 py-16">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
 
           {/* Brand column */}
@@ -58,29 +113,41 @@ export default function Footer() {
                 <Image src="/cruz-biz.png" alt="Cruz Plumbing" fill className="object-contain" />
               </div>
               <div>
-                <p className="font-display font-bold text-white text-lg">CRUZ PLUMBING</p>
-                <p className="text-brand-blue-light text-xs tracking-widest uppercase">Family Owned & Operated</p>
+                <p
+                  style={{
+                    fontFamily: "'Archivo Narrow', 'Arial Narrow', sans-serif",
+                    fontWeight: 700,
+                    fontSize: "1.1rem",
+                    color: "#fff",
+                  }}
+                >
+                  CRUZ PLUMBING
+                </p>
+                <p className="text-xs tracking-widest uppercase" style={{ color: "#2684FF" }}>
+                  Family Owned & Operated
+                </p>
               </div>
             </div>
             <p className="text-slate-400 text-sm leading-relaxed mb-5">
               Trusted plumbing for West Valley families. We treat your home like our own — because that&apos;s what neighbors do.
             </p>
             <div className="flex items-center gap-2 mb-3">
-              <Shield className="w-4 h-4 text-brand-blue-light flex-shrink-0" />
+              <Shield className="w-4 h-4 flex-shrink-0" style={{ color: "#2684FF" }} />
               <span className="text-slate-400 text-sm">AZ License #1050063</span>
             </div>
             <div className="flex items-center gap-1 mb-5">
               {[...Array(5)].map((_, i) => (
-                <Star key={i} className="w-4 h-4 fill-brand-accent text-brand-accent" />
+                <Star key={i} className="w-4 h-4 fill-brand-blue-lt text-brand-blue-lt" />
               ))}
               <span className="text-slate-400 text-sm ml-1">5.0 · Google Rated</span>
             </div>
-            {/* Social */}
             <div className="flex items-center gap-3">
-              <a href="#" aria-label="Facebook" className="w-9 h-9 rounded-lg bg-white/5 border border-white/10 hover:border-brand-blue/40 flex items-center justify-center text-slate-400 hover:text-white transition-all">
+              <a href="#" aria-label="Facebook"
+                className="w-9 h-9 rounded-lg bg-white/5 border border-white/8 hover:border-brand-blue/50 flex items-center justify-center text-slate-400 hover:text-white transition-all">
                 <Facebook className="w-4 h-4" />
               </a>
-              <a href="#" aria-label="Instagram" className="w-9 h-9 rounded-lg bg-white/5 border border-white/10 hover:border-brand-blue/40 flex items-center justify-center text-slate-400 hover:text-white transition-all">
+              <a href="#" aria-label="Instagram"
+                className="w-9 h-9 rounded-lg bg-white/5 border border-white/8 hover:border-brand-blue/50 flex items-center justify-center text-slate-400 hover:text-white transition-all">
                 <Instagram className="w-4 h-4" />
               </a>
             </div>
@@ -88,14 +155,13 @@ export default function Footer() {
 
           {/* Services */}
           <div>
-            <h4 className="text-white font-semibold text-sm tracking-wider uppercase mb-5 flex items-center gap-2">
-              Services
-            </h4>
+            <h4 className="text-white font-semibold text-sm tracking-wider uppercase mb-5">Services</h4>
             <ul className="flex flex-col gap-2.5">
               {services.map((s) => (
                 <li key={s}>
-                  <a href="#services" className="text-slate-400 hover:text-white text-sm transition-colors duration-200 flex items-center gap-2 group">
-                    <span className="w-1 h-1 rounded-full bg-brand-blue-light/50 group-hover:bg-brand-blue-light transition-colors" />
+                  <a href="#services"
+                    className="text-slate-400 hover:text-white text-sm transition-colors duration-200 flex items-center gap-2 group">
+                    <span className="w-1 h-1 rounded-full bg-brand-blue/50 group-hover:bg-brand-blue-lt transition-colors" />
                     {s}
                   </a>
                 </li>
@@ -106,7 +172,7 @@ export default function Footer() {
           {/* Service areas */}
           <div>
             <h4 className="text-white font-semibold text-sm tracking-wider uppercase mb-5 flex items-center gap-2">
-              <MapPin className="w-4 h-4 text-brand-blue-light" />
+              <MapPin className="w-4 h-4" style={{ color: "#2684FF" }} />
               Service Areas
             </h4>
             <ul className="flex flex-col gap-2.5">
@@ -119,7 +185,7 @@ export default function Footer() {
                 </li>
               ))}
             </ul>
-            <p className="text-slate-600 text-xs mt-4">+ surrounding West Valley communities</p>
+            <p className="text-slate-700 text-xs mt-4">+ surrounding West Valley communities</p>
           </div>
 
           {/* Contact + Hours */}
@@ -127,11 +193,14 @@ export default function Footer() {
             <h4 className="text-white font-semibold text-sm tracking-wider uppercase mb-5">Contact</h4>
             <div className="flex flex-col gap-4">
               <a href="tel:6235513781" className="flex items-center gap-3 group">
-                <div className="w-9 h-9 rounded-lg bg-brand-blue/20 border border-brand-blue/30 flex items-center justify-center flex-shrink-0">
-                  <Phone className="w-4 h-4 text-brand-blue-light" />
+                <div className="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0"
+                  style={{ background: "rgba(0,82,204,0.18)", border: "1px solid rgba(0,82,204,0.3)" }}>
+                  <Phone className="w-4 h-4" style={{ color: "#2684FF" }} />
                 </div>
                 <div>
-                  <p className="text-white font-semibold text-sm group-hover:text-brand-blue-light transition-colors">(623) 551-3781</p>
+                  <p className="text-white font-semibold text-sm group-hover:text-brand-blue-lt transition-colors">
+                    (623) 551-3781
+                  </p>
                   <p className="text-slate-500 text-xs">Call or Text</p>
                 </div>
               </a>
@@ -163,18 +232,18 @@ export default function Footer() {
       </div>
 
       {/* Bottom bar */}
-      <div className="border-t border-white/5 py-5 px-4">
+      <div className="border-t py-5 px-4" style={{ borderColor: "rgba(255,255,255,0.04)" }}>
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
           <p className="text-slate-600 text-xs">
             © {new Date().getFullYear()} Cruz Plumbing LLC · All rights reserved · AZ Lic. #1050063
           </p>
-          <p className="text-slate-600 text-xs">
-            Serving Avondale, Goodyear & West Valley, AZ
+          <p className="text-slate-600 text-xs italic" style={{ color: "#2684FF" }}>
+            With Cruz You Don&apos;t Lose!
           </p>
         </div>
       </div>
 
-      {/* Mobile bottom padding for sticky bar */}
+      {/* Mobile sticky bar spacer */}
       <div className="h-16 md:hidden" />
     </footer>
   );

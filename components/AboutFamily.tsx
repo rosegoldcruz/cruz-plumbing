@@ -9,7 +9,7 @@ export default function AboutFamily() {
     <section
       id="about"
       className="relative py-24 lg:py-36 overflow-hidden"
-      style={{ background: "linear-gradient(170deg, #0C1626 0%, #080E1A 100%)" }}
+      style={{ background: "#000000" }}
     >
       {/* Directional light — comes from right */}
       <div className="absolute top-0 right-0 w-[600px] h-[600px] pointer-events-none"
@@ -26,8 +26,8 @@ export default function AboutFamily() {
             transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
           >
             <div className="flex items-center gap-3 mb-5">
-              <div className="h-px w-6 bg-brand-accent-hot" />
-              <span className="authority-badge text-brand-accent-hot">Who We Are</span>
+              <div className="h-px w-6 bg-brand-blue-lt" />
+              <span className="authority-badge text-brand-blue-lt">Who We Are</span>
             </div>
             <h2
               className="font-display font-bold text-white"
@@ -94,9 +94,9 @@ export default function AboutFamily() {
             <div
               className="absolute bottom-16 -right-4 lg:-right-8 px-4 py-3 text-sm font-semibold text-white"
               style={{
-                background: "#E8960A",
+                background: "#0052CC",
                 borderRadius: "3px",
-                color: "#080E1A",
+                color: "#ffffff",
                 letterSpacing: "0.02em",
                 zIndex: 10,
                 fontSize: "0.75rem",

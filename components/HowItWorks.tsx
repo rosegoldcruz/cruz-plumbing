@@ -17,7 +17,7 @@ const steps = [
     icon: Search,
     title: "We Diagnose Fast",
     desc: "On time. Upfront price before anything starts. No pressure, no mystery.",
-    accent: "#E8960A",
+    accent: "#0052CC",
   },
   {
     n: "03",
@@ -57,9 +57,12 @@ export default function HowItWorks() {
       id="how-it-works"
       ref={ref}
       className="relative py-24 lg:py-32 overflow-hidden"
-      style={{ background: "linear-gradient(180deg, #080E1A 0%, #0C1626 100%)" }}
+      style={{ background: "#000000" }}
     >
-      <div className="absolute inset-0 blueprint-bg opacity-50 pointer-events-none" />
+      <div className="absolute inset-0 pointer-events-none" style={{
+        backgroundImage: "linear-gradient(rgba(0,82,204,0.035) 1px, transparent 1px), linear-gradient(90deg, rgba(0,82,204,0.035) 1px, transparent 1px)",
+        backgroundSize: "80px 80px",
+      }} />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
@@ -72,8 +75,8 @@ export default function HowItWorks() {
             transition={{ duration: 0.6 }}
           >
             <div className="flex items-center gap-3 mb-5">
-              <div className="h-px w-6 bg-brand-accent-hot" />
-              <span className="authority-badge text-brand-accent-hot">How It Works</span>
+              <div className="h-px w-6" style={{ background: "#2684FF" }} />
+              <span className="authority-badge" style={{ color: "#2684FF" }}>How It Works</span>
             </div>
             <h2
               className="font-display font-bold text-white"
@@ -81,7 +84,7 @@ export default function HowItWorks() {
             >
               Simple. Fast.
               <br />
-              <span style={{ color: "#93C5FD" }}>Done Right.</span>
+              <span style={{ color: "#2684FF" }}>Done Right.</span>
             </h2>
             <p className="text-slate-400 text-lg mt-4">
               Three steps. No runaround. From your call to a fixed home.
@@ -99,7 +102,7 @@ export default function HowItWorks() {
                 className="step relative flex flex-col gap-5 p-7 lg:p-8"
                 style={{
                   opacity: 0,
-                  background: "rgba(12,22,38,0.7)",
+                  background: "#1A1A1A",
                   border: "1px solid rgba(255,255,255,0.06)",
                   borderRadius: "5px",
                   marginTop: i === 1 ? "24px" : "0",  // middle card pushed down = asymmetry
