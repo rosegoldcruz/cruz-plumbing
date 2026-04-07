@@ -39,7 +39,7 @@ export default function SocialProof() {
           </p>
 
           <p className="text-slate-300 text-lg leading-relaxed max-w-xl mx-auto mb-8">
-            Latino-owned. LGBTQ+ friendly. Real plumbers who show up, do the work right, and treat your home with respect.
+            Latino-owned. Real plumbers who show up, do the work right, and treat your home with respect.
           </p>
 
           <a

@@ -16,16 +16,28 @@ export default function Hero() {
       className="relative min-h-screen flex items-center overflow-hidden"
       style={{ background: "#050505" }}
     >
-      {/* Video background */}
+      {/* Video background — desktop */}
       <video
         autoPlay
         muted
         loop
         playsInline
-        className="absolute inset-0 w-full h-full object-cover"
+        className="absolute inset-0 w-full h-full object-cover hidden sm:block"
         style={{ zIndex: 0 }}
       >
-        <source src="/video_2026-04-07_11-59-22.mp4" type="video/mp4" />
+        <source src="/new hero.mp4" type="video/mp4" />
+      </video>
+
+      {/* Video background — mobile */}
+      <video
+        autoPlay
+        muted
+        loop
+        playsInline
+        className="absolute inset-0 w-full h-full object-cover block sm:hidden"
+        style={{ zIndex: 0 }}
+      >
+        <source src="/hero video mayeb.mp4" type="video/mp4" />
       </video>
 
       {/* Dark overlay */}
