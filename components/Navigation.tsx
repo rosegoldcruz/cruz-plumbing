@@ -39,12 +39,13 @@ export default function Navigation() {
           <div className="flex items-center justify-between h-16 md:h-20">
             {/* Logo */}
             <a href="#" className="flex items-center gap-3 group">
-              <div className="relative w-10 h-10 md:w-12 md:h-12">
+              <div className="relative w-24 h-12 md:w-32 md:h-14 shrink-0 overflow-hidden rounded-sm border border-white/10">
                 <Image
                   src="/Cruise Trump.png"
                   alt="Cruz Plumbing"
                   fill
-                  className="object-contain"
+                  className="object-cover"
+                  sizes="(max-width: 768px) 96px, 128px"
                 />
               </div>
               <div className="flex flex-col leading-tight">
