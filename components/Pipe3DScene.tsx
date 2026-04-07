@@ -492,7 +492,7 @@ function HintOverlay({ phase }: { phase: Phase }) {
           style={{ background: "rgba(0,0,0,0.75)", border: "1px solid rgba(38,132,255,0.25)", borderRadius: "4px" }}>
           <span className="w-2 h-2 rounded-full" style={{ background: "#2684FF", boxShadow: "0 0 10px #0052CC" }} />
           <span className="text-brand-blue-lt text-xs tracking-widest uppercase font-medium">
-            ⚡ Pressure Active — Click to replay
+            ⚡ Pressure Active
           </span>
         </div>
       )}
