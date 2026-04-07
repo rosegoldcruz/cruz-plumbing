@@ -1,55 +1,31 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, Phone } from "lucide-react";
-import Image from "next/image";
 
-const featured = {
-  pain: "Pipe burst? Water pouring? Can't wait?",
-  title: "Emergency Plumbing",
-  desc: "When your home is under threat, you need someone calm, fast, and on their way. We answer. We show up. We stop the damage.",
-  callout: "We don't guess. We fix it right.",
-  image: "/housecalls.png",
-  color: "#EF4444",
-  bg: "rgba(239,68,68,0.06)",
-  border: "rgba(239,68,68,0.22)",
-};
-
-const secondary = [
+const services = [
   {
-    pain: "Got a leak?",
-    title: "Leak Detection & Repair",
-    desc: "Hidden or obvious — we find it fast and seal it right the first time.",
-    image: "/on-site.png",
-    color: "#2684FF",
-    border: "rgba(38,132,255,0.18)",
+    title: "Emergency Plumbing",
+    desc: "Burst pipe? Flooding? We answer 24/7 and show up fast.",
+    color: "#EF4444",
+    emergency: true,
   },
   {
-    pain: "No hot water?",
+    title: "Leak Detection & Repair",
+    desc: "Hidden or obvious — we find it and fix it right the first time.",
+    color: "#2684FF",
+  },
+  {
     title: "Water Heater Repair",
     desc: "Same-day repair or replacement. We carry units on the truck.",
-    image: "/van.png",
     color: "#F97316",
-    border: "rgba(249,115,22,0.18)",
   },
   {
-    pain: "Drain backing up?",
     title: "Drain Cleaning",
     desc: "Cleared fast, root causes identified. Not a band-aid fix.",
-    image: "/summer.png",
     color: "#10B981",
-    border: "rgba(16,185,129,0.18)",
   },
-];
-
-const strip = [
-  { label: "Low Pressure" },
-  { label: "Fixture Install" },
-  { label: "Toilet Repair" },
-  { label: "Pipe Reroute" },
-  { label: "Water Softeners" },
-  { label: "Sewer Line" },
 ];
 
 export default function WhatWeFix() {
@@ -63,10 +39,10 @@ export default function WhatWeFix() {
       if (!sectionRef.current) return;
       gsap.fromTo(
         sectionRef.current.querySelectorAll(".svc-reveal"),
-        { opacity: 0, y: 36 },
+        { opacity: 0, y: 28 },
         {
           opacity: 1, y: 0,
-          duration: 0.65, stagger: 0.1, ease: "power3.out",
+          duration: 0.6, stagger: 0.1, ease: "power3.out",
           scrollTrigger: { trigger: sectionRef.current, start: "top 72%", once: true },
         }
       );
@@ -81,188 +57,93 @@ export default function WhatWeFix() {
       className="relative py-24 lg:py-32 overflow-hidden"
       style={{ background: "#000000" }}
     >
-      {/* Blueprint grid overlay */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          backgroundImage: `
-            linear-gradient(rgba(0,82,204,0.04) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(0,82,204,0.04) 1px, transparent 1px)
-          `,
-          backgroundSize: "80px 80px",
-        }}
-      />
-
-      {/* Top-left glow */}
-      <div className="absolute top-0 left-0 w-[500px] h-[500px] pointer-events-none"
-        style={{ background: "radial-gradient(ellipse at 0% 0%, rgba(0,82,204,0.07) 0%, transparent 70%)" }} />
-
       <div className="relative max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
 
-        {/* Section header */}
+        {/* Header */}
         <div className="mb-14 svc-reveal" style={{ opacity: 0 }}>
           <div className="flex items-center gap-3 mb-5">
             <div className="h-px w-6" style={{ background: "#2684FF" }} />
-            <span className="authority-badge" style={{ color: "#2684FF" }}>What We Fix</span>
+            <span className="text-xs font-semibold tracking-[0.2em] uppercase" style={{ color: "#2684FF" }}>What We Fix</span>
           </div>
           <h2
             style={{
               fontFamily: "'Archivo Narrow', 'Arial Narrow', sans-serif",
-              fontSize: "clamp(2rem, 4vw, 3.4rem)",
+              fontSize: "clamp(2rem, 4vw, 3.2rem)",
               lineHeight: 1.0,
               letterSpacing: "-0.02em",
               fontWeight: 700,
               color: "#fff",
-              maxWidth: "560px",
+              maxWidth: "480px",
             }}
           >
-            Whatever&apos;s Wrong,
-            <br />
+            Whatever&apos;s Wrong,{" "}
             <span style={{ color: "#2684FF" }}>We Handle It.</span>
           </h2>
-          <p className="text-slate-400 text-lg mt-4 max-w-lg">
-            You&apos;re not just another job to us. Every call gets a real plumber — not a dispatcher, not an estimate factory.
-          </p>
         </div>
 
-        {/* Asymmetric grid */}
-        <div className="grid lg:grid-cols-[1.45fr_1fr] gap-5">
-
-          {/* Featured — dominant */}
-          <a
-            href="#quote"
-            className="svc-reveal surface-elevated grain-panel group relative flex flex-col justify-between overflow-hidden p-8 lg:p-10"
-            style={{
-              opacity: 0,
-              background: featured.bg,
-              borderRadius: "6px",
-              minHeight: "340px",
-            }}
-          >
-            <div className="absolute top-0 right-0 w-64 h-64 pointer-events-none"
-              style={{ background: "radial-gradient(ellipse at 100% 0%, rgba(239,68,68,0.09) 0%, transparent 70%)" }} />
-
-            <div>
-              <div className="flex items-start justify-between mb-6 gap-6">
-                <div className="relative w-32 sm:w-40 aspect-[1.18/0.82] photo-frame rounded-[5px] shrink-0">
-                  <Image src={featured.image} alt={featured.title} fill className="object-cover" sizes="160px" />
-                </div>
-                <div className="flex items-center gap-2">
+        {/* Service cards — clean grid, no images */}
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          {services.map((s) => (
+            <a
+              key={s.title}
+              href="#quote"
+              className="svc-reveal group relative flex flex-col justify-between p-6 transition-all duration-200 hover:border-white/12"
+              style={{
+                opacity: 0,
+                background: "#111111",
+                border: "1px solid rgba(255,255,255,0.06)",
+                borderRadius: "6px",
+              }}
+            >
+              {s.emergency && (
+                <div className="flex items-center gap-2 mb-4">
                   <span className="relative flex h-2 w-2">
                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75" />
                     <span className="relative inline-flex rounded-full h-2 w-2 bg-red-500" />
                   </span>
-                  <span className="text-red-400 text-xs font-semibold tracking-wide">24/7 Available</span>
+                  <span className="text-red-400 text-xs font-semibold">24/7</span>
                 </div>
-              </div>
+              )}
+              {!s.emergency && <div className="mb-4"><div className="w-2 h-2 rounded-full" style={{ background: s.color }} /></div>}
 
-              <p className="text-slate-500 text-sm italic mb-2">{featured.pain}</p>
-              <h3
-                style={{
-                  fontFamily: "'Archivo Narrow', 'Arial Narrow', sans-serif",
-                  fontSize: "clamp(1.6rem, 3vw, 2.2rem)",
-                  lineHeight: 1.0,
-                  fontWeight: 700,
-                  color: "#fff",
-                  marginBottom: "12px",
-                }}
-              >
-                {featured.title}
-              </h3>
-              <p className="text-slate-300 text-base leading-relaxed max-w-md">{featured.desc}</p>
-            </div>
-
-            <div className="mt-8 flex items-center justify-between">
-              <span className="text-sm font-semibold italic" style={{ color: featured.color }}>
-                &ldquo;{featured.callout}&rdquo;
-              </span>
-              <div className="flex items-center gap-2 font-semibold text-sm transition-all duration-200 group-hover:gap-3"
-                style={{ color: featured.color }}>
-                Get help now <ArrowRight className="w-4 h-4" />
-              </div>
-            </div>
-          </a>
-
-          {/* Secondary stack */}
-          <div className="flex flex-col gap-4">
-            {secondary.map((s) => {
-              return (
-                <a
-                  key={s.title}
-                  href="#quote"
-                  className="svc-reveal surface-elevated grain-panel group flex items-start gap-5 p-4 sm:p-6 transition-all duration-200"
-                  style={{
-                    opacity: 0,
-                    borderRadius: "6px",
-                  }}
+              <div>
+                <h3
+                  className="text-white font-bold text-lg mb-2"
+                  style={{ fontFamily: "'Archivo Narrow', 'Arial Narrow', sans-serif" }}
                 >
-                  <div className="relative w-24 sm:w-28 aspect-[1/1] flex-shrink-0 photo-frame rounded-[5px] mt-0.5">
-                    <Image src={s.image} alt={s.title} fill className="object-cover" sizes="112px" />
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <p className="text-slate-500 text-xs italic mb-0.5">{s.pain}</p>
-                    <h4 style={{ fontFamily: "'Archivo Narrow', 'Arial Narrow', sans-serif", fontWeight: 700, fontSize: "1.1rem", color: "#fff", marginBottom: "4px" }}>
-                      {s.title}
-                    </h4>
-                    <p className="text-slate-400 text-sm leading-relaxed">{s.desc}</p>
-                  </div>
-                  <ArrowRight className="w-4 h-4 text-slate-600 flex-shrink-0 mt-1 transition-all duration-200 group-hover:text-slate-300 group-hover:translate-x-0.5" />
-                </a>
-              );
-            })}
-          </div>
-        </div>
+                  {s.title}
+                </h3>
+                <p className="text-slate-400 text-sm leading-relaxed">{s.desc}</p>
+              </div>
 
-        {/* Horizontal strip */}
-        <div
-          className="svc-reveal mt-5 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6"
-          style={{
-            opacity: 0,
-            borderRadius: "6px",
-          }}
-        >
-          {strip.map((item, i) => {
-            return (
-              <a
-                key={i}
-                href="#quote"
-                className="surface-pressed grain-panel group flex items-center gap-3 px-5 py-4 transition-all duration-200 hover:bg-brand-blue/5"
-                style={{
-                  borderRight: i < strip.length - 1 ? "1px solid rgba(0,82,204,0.1)" : "none",
-                }}
-              >
-                <span className="w-2 h-2 rounded-full bg-brand-blue-light led-glow flex-shrink-0" />
-                <span className="text-slate-400 group-hover:text-slate-200 text-sm font-medium transition-colors duration-200 whitespace-nowrap">
-                  {item.label}
-                </span>
-              </a>
-            );
-          })}
+              <div className="flex items-center gap-1 mt-6 text-sm font-semibold transition-all duration-200 group-hover:gap-2"
+                style={{ color: s.color }}>
+                Get help <ArrowRight className="w-3.5 h-3.5" />
+              </div>
+            </a>
+          ))}
         </div>
 
         {/* Bottom CTA */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="relative mt-12 flex flex-col sm:flex-row items-center justify-between gap-6 px-6 py-5"
-          style={{
-            borderRadius: "6px",
-          }}
+          transition={{ duration: 0.5 }}
+          className="mt-10 flex flex-col sm:flex-row items-center justify-between gap-4 px-6 py-5"
+          style={{ background: "#111111", border: "1px solid rgba(255,255,255,0.06)", borderRadius: "6px" }}
         >
-          <div className="absolute inset-0 surface-pressed rounded-[6px] pointer-events-none" />
-          <div className="relative z-10">
+          <div>
             <p className="text-white font-semibold text-base">Not sure what&apos;s wrong?</p>
-            <p className="text-slate-400 text-sm mt-0.5">Call us. We&apos;ll diagnose it over the phone — for free.</p>
+            <p className="text-slate-500 text-sm mt-0.5">Call us — we&apos;ll diagnose it over the phone for free.</p>
           </div>
           <a
-            href="tel:6235513781"
-            className="relative z-10 hero-pulse metal-button flex items-center gap-2 font-bold text-sm px-6 py-3 text-white flex-shrink-0"
-            style={{ borderRadius: "5px", letterSpacing: "0.01em" }}
+            href="tel:9093914033"
+            className="hero-pulse metal-button flex items-center gap-2 font-bold text-sm px-6 py-3 text-white flex-shrink-0"
+            style={{ borderRadius: "5px" }}
           >
             <Phone className="w-4 h-4" />
-            (623) 551-3781
+            (909) 391-4033
           </a>
         </motion.div>
       </div>

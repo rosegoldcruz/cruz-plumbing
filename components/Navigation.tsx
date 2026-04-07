@@ -75,12 +75,12 @@ export default function Navigation() {
             {/* CTA */}
             <div className="hidden md:flex items-center gap-3">
               <a
-                href="tel:6235513781"
+                href="tel:9093914033"
                 className="hero-pulse flex items-center gap-2 text-white font-bold px-5 py-2.5 text-sm transition-all duration-150 hover:opacity-90"
                 style={{ background: "#0052CC", borderRadius: "5px", color: "#ffffff" }}
               >
                 <Phone className="w-3.5 h-3.5" />
-                (623) 551-3781
+                (909) 391-4033
               </a>
             </div>
 
@@ -119,12 +119,12 @@ export default function Navigation() {
                 </a>
               ))}
               <a
-                href="tel:6235513781"
+                href="tel:9093914033"
                 className="flex items-center justify-center gap-2 text-white font-bold px-6 py-4 text-lg mt-2"
                 style={{ background: "#0052CC", borderRadius: "5px", color: "#ffffff" }}
               >
                 <Phone className="w-5 h-5" />
-                Call Now — (623) 551-3781
+                Call Now — (909) 391-4033
               </a>
             </div>
           </motion.div>

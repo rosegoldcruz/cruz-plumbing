@@ -28,7 +28,7 @@ export default function StickyCallButton() {
           >
             <div className="flex gap-3 max-w-sm mx-auto">
               <a
-                href="tel:6235513781"
+                href="tel:9093914033"
                 className="hero-pulse flex-1 min-h-12 flex items-center justify-center gap-2 font-bold py-3.5 text-sm"
                 style={{ background: "#0052CC", color: "#ffffff", borderRadius: "5px" }}
               >
@@ -66,12 +66,12 @@ export default function StickyCallButton() {
                   <p className="text-white font-semibold text-sm mb-3">Ready to help!</p>
                   <div className="flex flex-col gap-2">
                     <a
-                      href="tel:6235513781"
+                      href="tel:9093914033"
                       className="flex items-center gap-2 font-bold px-4 py-2.5 text-sm"
                       style={{ background: "#0052CC", color: "#ffffff", borderRadius: "4px" }}
                     >
                       <Phone className="w-4 h-4" />
-                      (623) 551-3781
+                      (909) 391-4033
                     </a>
                     <a
                       href="#quote"
